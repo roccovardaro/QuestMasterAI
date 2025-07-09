@@ -1,0 +1,19 @@
+{
+    "quest_description": "Nel regno di Eldoria, la spada del re è caduta nel bosco durante una battuta di caccia. Senza di essa, il re non può tenere la cerimonia di primavera. Un giovane abitante del villaggio viene incaricato di recuperarla.",
+    "initial_state": "Il protagonista si trova nel villaggio e riceve la missione dal re.",
+    "goal": "Recuperare la spada nel bosco e riportarla al castello.",
+    "obstacles": [
+        "Il sentiero per il bosco è bloccato da un tronco caduto.",
+        "Un corvo ha preso la spada e l'ha portata in cima a un albero.",
+        "Il tempo peggiora e inizia a piovere, rendendo il terreno scivoloso."
+    ],
+    "branching_factor": {
+        "min": 2,
+        "max": 3
+    },
+    "depth_constraints": {
+        "min": 3,
+        "max": 5
+    },
+    "context": "Storia ambientata in un piccolo regno fantasy. È una missione semplice, adatta a bambini o principianti, con un tono leggero e avventuroso."
+}

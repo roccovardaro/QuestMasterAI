@@ -1,14 +1,9 @@
 import json
 import logging
-import os
-from pathlib import Path
-
-from dotenv import load_dotenv
-
-from src.utils.constant import get_lore
+from src.utils.constant import get_lore, get_problem_valid_example, get_domain_valid_example
 from src.utils.utils import api_generate_GEMINI, extract_and_save_pddl
 
-load_dotenv()
+
 # Codice ANSI per il verde
 GREEN = "\033[92m"
 RESET = "\033[0m"
@@ -38,7 +33,12 @@ def generate_prompt(lore):
           <PROBLEM_PDDL>  
 
           </PROBLEM_PDDL> for the problem.
+          
           In your response pay attention to the pddl syntax. Each pddl block is encapsulated in ( and ). Example (define (guard-awake ?location) A guard is awake at the specified location)
+          Here an example of valid domain:
+        {get_domain_valid_example()}
+        Here an example of valid problem:
+        {get_problem_valid_example()}
           """
 
 def generate_pddl(lore):
@@ -56,3 +56,4 @@ def generate_pddl(lore):
 lore= get_lore()
 response = generate_pddl(lore)
 extract_and_save_pddl(response)
+

@@ -1,17 +1,17 @@
 (define (domain eldoria-quest)
     (:requirements :strips :typing)
     (:types
-        entity ; Top-level type for anything that can be located
-        person object - entity ; General categories for entities
-        king protagonist - person ; Specific types of persons
+        person ; Generic type for characters
         location ; Places in the world
-        sword log tree - object ; Specific types of objects that are items or static environmental features
+        object ; Generic type for items and other entities
+        king protagonist - person ; Specific types of persons
+        sword log tree - object ; Specific types of objects
     )
 
     (:predicates
-        (at ?o - entity ?l - location) ; An entity (person or item) is at a specific location.
+        (at ?o - object ?l - location) ; An object (person or item) is at a specific location.
         (mission-active ?p - protagonist) ; Indicates the protagonist has received and is on the mission.
-        (has ?p - protagonist ?s - sword) ; Indicates the protagonist possesses the sword.
+        (has ?p - protagonist ?i - sword) ; Indicates the protagonist possesses the sword.
 
         ;; Obstacle predicates
         (path-blocked ?from ?to - location ?obs - log) ; A path between two locations is blocked by a log.
@@ -31,7 +31,6 @@
         :precondition (and
             (at ?p ?village)
             (at ?k ?village)
-            (not (mission-active ?p)) ; Protagonist has not yet received the mission
         )
         :effect (and
             (mission-active ?p)
@@ -80,7 +79,6 @@
         :precondition (and
             (at ?p ?forest)
             (sword-on-tree ?s ?t)
-            (at ?t ?forest) ; Ensure the tree is in the current forest location
             (mission-active ?p)
         )
         :effect (and
@@ -98,7 +96,6 @@
             (at ?p ?loc)
             (ground-slippery ?loc)
             (mission-active ?p)
-            (not (can-traverse-slippery-ground ?p)) ; Protagonist has not yet adapted
         )
         :effect (and
             (can-traverse-slippery-ground ?p)

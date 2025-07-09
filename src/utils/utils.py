@@ -1,10 +1,13 @@
 import logging
 import os
+from pathlib import Path
+
+from dotenv import load_dotenv
 
 from src.utils.constant import save_domain, save_problem
 import google.generativeai as genai
 
-
+load_dotenv()
 def extract_and_save_pddl(response: str) -> None:
     logging.info("Extracting domain and problem PDDL blocks from response...")
 
@@ -26,3 +29,9 @@ def api_generate_GEMINI(prompt:str):
     model = genai.GenerativeModel(os.getenv("GOOGLE_MODEL_NAME"))
     response = model.generate_content(prompt)
     return response.text
+
+
+def to_wsl_path(path: Path) -> str:
+    # Converte un Path di Windows in path WSL
+    path = path.resolve()
+    return "/mnt/" + path.drive[0].lower() + path.as_posix()[2:]

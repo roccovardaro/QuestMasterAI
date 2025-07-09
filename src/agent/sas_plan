@@ -1,0 +1,3 @@
+(retrieve-sword-from-tree protagonist1 royal-sword oak-tree village)
+(return-sword-to-king protagonist1 royal-sword king1 village)
+; cost = 2 (unit cost)
