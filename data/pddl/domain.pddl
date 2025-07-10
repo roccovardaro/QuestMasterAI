@@ -1,71 +1,47 @@
-(define (domain eldoria-quest)
+(define (domain elia-quest-for-magic-fountain)
     (:requirements :strips :typing)
     (:types
-        entity ; Top-level type for anything that can be located
-        person object - entity ; General categories for entities
-        king protagonist - person ; Specific types of persons
-        location ; Places in the world
-        sword log tree - object ; Specific types of objects that are items or static environmental features
+        person ; Represents characters in the story, like Elia.
+        location ; Represents distinct places in the world.
+        item ; Represents objects or tools Elia might carry.
     )
 
     (:predicates
-        (at ?o - entity ?l - location) ; An entity (person or item) is at a specific location.
-        (mission-active ?p - protagonist) ; Indicates the protagonist has received and is on the mission.
-        (has ?p - protagonist ?s - sword) ; Indicates the protagonist possesses the sword.
+        (at ?p - person ?l - location) ; Indicates a person's current location.
+        (has ?p - person ?i - item) ; Indicates a person possesses an item.
+        (quest-active ?p - person) ; True when the protagonist has embarked on the quest.
 
-        ;; Obstacle predicates
-        (path-blocked ?from ?to - location ?obs - log) ; A path between two locations is blocked by a log.
-        (sword-on-tree ?s - sword ?t - tree) ; The sword is located on a specific tree.
-        (ground-slippery ?l - location) ; The ground at a certain location is slippery.
+        ;; Obstacle/Initial State Predicates
+        (drought-present) ; Indicates the village and land are suffering from drought.
+        (fountain-dried ?l - location) ; Indicates the Magic Fountain is dried up.
+        (forest-silence-oppressive ?l - location) ; Indicates the deep forest's silence is an oppressive obstacle.
 
-        ;; Overcome obstacle predicates
-        (path-cleared ?from ?to - location) ; Indicates a specific path has been cleared of a physical block (like a log).
-        (can-traverse-slippery-ground ?p - protagonist) ; Indicates protagonist has learned/adapted to move on slippery ground.
-        (king-has-sword ?k - king ?s - sword) ; Goal predicate: The king has the sword.
+        ;; Overcoming Obstacle/Goal-related Predicates
+        (silence-broken ?l - location) ; Indicates the oppressive forest silence has been overcome.
+        (fountain-awakened ?l - location) ; Indicates the Magic Fountain has been revived.
+        ;; (not (drought-present)) is the ultimate goal, handled by the fountain awakening effect.
     )
 
-    ;; Action: Start the quest (receiving the mission from the king).
-    ;; This action sets the main quest objective as active for the protagonist.
-    (:action start-quest
-        :parameters (?p - protagonist ?k - king ?village - location)
+    ;; Action: Elia decides to embark on the quest.
+    ;; This action marks the formal beginning of the adventure, driven by the drought.
+    (:action embark-quest
+        :parameters (?p - person ?v - location)
         :precondition (and
-            (at ?p ?village)
-            (at ?k ?village)
-            (not (mission-active ?p)) ; Protagonist has not yet received the mission
+            (at ?p ?v)
+            (drought-present) ; The presence of drought motivates the quest.
         )
         :effect (and
-            (mission-active ?p)
+            (quest-active ?p)
         )
     )
 
-    ;; Action: Clear a fallen log blocking a path.
-    ;; This action represents the protagonist physically removing an obstacle from a path.
-    (:action clear-fallen-log
-        :parameters (?p - protagonist ?log_obs - log ?from ?to - location)
-        :precondition (and
-            (at ?p ?from)
-            (path-blocked ?from ?to ?log_obs)
-            (mission-active ?p)
-        )
-        :effect (and
-            (not (path-blocked ?from ?to ?log_obs))
-            (path-cleared ?from ?to)
-        )
-    )
-
-    ;; Action: Move between locations.
-    ;; This action allows movement if the path is physically clear and
-    ;; if the protagonist can handle the ground conditions (i.e., not slippery, or has adapted).
+    ;; Action: Move between different locations.
+    ;; Represents Elia travelling from one place to another.
     (:action go
-        :parameters (?p - protagonist ?from ?to - location)
+        :parameters (?p - person ?from ?to - location)
         :precondition (and
             (at ?p ?from)
-            (mission-active ?p)
-            (path-cleared ?from ?to) ; Requires the path to be cleared if it was blocked by a log.
-            (or
-                (not (ground-slippery ?to)) ; If the destination location is not slippery, OR
-                (can-traverse-slippery-ground ?p) ; If protagonist has adapted to slippery ground.
-            )
+            (quest-active ?p) ; Elia must be on her quest to travel to new areas.
         )
         :effect (and
             (not (at ?p ?from))
@@ -73,51 +49,39 @@
         )
     )
 
-    ;; Action: Retrieve the sword from the tree where the crow dropped it.
-    ;; This action implies the protagonist climbs the tree and takes the sword.
-    (:action retrieve-sword-from-tree
-        :parameters (?p - protagonist ?s - sword ?t - tree ?forest - location)
+    ;; Action: Elia uses her voice (telling stories) to break the oppressive silence of the forest.
+    ;; This action specifically addresses the "silenzio opprimente" obstacle.
+    ;; The lantern is also needed, symbolizing her tools for the task.
+    (:action tell-story-to-forest
+        :parameters (?p - person ?f - location ?l - item)
         :precondition (and
-            (at ?p ?forest)
-            (sword-on-tree ?s ?t)
-            (at ?t ?forest) ; Ensure the tree is in the current forest location
-            (mission-active ?p)
+            (at ?p ?f)
+            (quest-active ?p)
+            (has ?p ?l) ; Requires the lantern, symbolizing her means to focus or illuminate her stories.
+            (forest-silence-oppressive ?f) ; This obstacle must be present to be overcome.
         )
         :effect (and
-            (not (sword-on-tree ?s ?t))
-            (has ?p ?s)
+            (not (forest-silence-oppressive ?f)) ; The silence is no longer an oppressive force.
+            (silence-broken ?f) ; Indicates the challenge has been overcome.
         )
     )
 
-    ;; Action: Adapt to slippery ground conditions.
-    ;; This action represents the protagonist finding a way (e.g., changing boots, learning a technique)
-    ;; to effectively move on slippery terrain. Once done, they can traverse any slippery ground.
-    (:action adapt-to-slippery-ground
-        :parameters (?p - protagonist ?loc - location)
+    ;; Action: Elia awakens the Magic Fountain, leading to the end of the drought.
+    ;; This is the core action to achieve the quest's primary goal.
+    ;; It requires the fountain to be dried and the forest's oppressive silence to have been broken,
+    ;; implying the environment is now receptive.
+    (:action awaken-magic-fountain
+        :parameters (?p - person ?mf - location ?f - location) ; mf=magic fountain location, f=forest location where silence was broken
         :precondition (and
-            (at ?p ?loc)
-            (ground-slippery ?loc)
-            (mission-active ?p)
-            (not (can-traverse-slippery-ground ?p)) ; Protagonist has not yet adapted
+            (at ?p ?mf)
+            (quest-active ?p)
+            (fountain-dried ?mf) ; The fountain must be dried to be awakened.
+            (silence-broken ?f) ; The forest's silence must be broken for the fountain to respond.
         )
         :effect (and
-            (can-traverse-slippery-ground ?p)
-        )
-    )
-
-    ;; Action: Return the sword to the king at the castle.
-    ;; This action completes the quest and achieves the final goal.
-    (:action return-sword-to-king
-        :parameters (?p - protagonist ?s - sword ?k - king ?castle - location)
-        :precondition (and
-            (at ?p ?castle)
-            (at ?k ?castle)
-            (has ?p ?s)
-            (mission-active ?p)
-        )
-        :effect (and
-            (not (has ?p ?s))
-            (king-has-sword ?k ?s)
+            (not (fountain-dried ?mf)) ; The fountain is no longer dried.
+            (fountain-awakened ?mf) ; The fountain is now awake and flowing.
+            (not (drought-present)) ; Resolves the main problem: the drought ends.
         )
     )
 )

@@ -1,6 +1,6 @@
 import logging
 import subprocess
-from src.utils.constant import DOWNWARD_PATH
+from src.utils.constant import DOWNWARD_PATH, DOMAIN_PATH, PROBLEM_PATH
 from src.utils.utils import to_wsl_path
 
 # Codice ANSI per il verde
@@ -56,3 +56,18 @@ def validate_plan(domain_path, problem_path, system="Windows"):
     bool_result="Solution found" in output or "Plan found" in output
     err_str= result.stderr
     return  bool_result, err_str
+
+
+
+
+def validate_plan_main(k=3):
+    i=0
+    while(i<k):
+        valid, err_str = validate_plan(DOMAIN_PATH,PROBLEM_PATH)
+        if(valid):
+            return True
+
+        #PROMPT CON ERRORE
+        #GENERA E SALVA PDDL
+        i+=1
+    return False

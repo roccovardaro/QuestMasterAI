@@ -1,48 +1,35 @@
-(define (problem retrieve-royal-sword)
-    (:domain eldoria-quest)
+(define (problem elia-magic-fountain-quest)
+    (:domain elia-quest-for-magic-fountain)
     (:objects
-        protagonist1 - protagonist
-        king1 - king
-        royal-sword - sword
-        fallen-log - log
-        oak-tree - tree
+        elia - person
         village - location
         forest - location
-        castle - location
+        magic-fountain-location - location
+        lantern - item
     )
 
     (:init
-        ;; Initial state as per quest description: "Il protagonista si trova nel villaggio e riceve la missione dal re."
-        (at protagonist1 village)
-        (at king1 village)
-        (not (mission-active protagonist1)) ; Protagonist needs to explicitly receive the mission first.
+        ;; Initial state: Elia is in her village.
+        (at elia village)
+        ;; Elia possesses her lantern, as per the lore ("armata solo della sua lanterna").
+        (has elia lantern)
 
-        ;; Obstacles setup:
-        ;; 1. "Il sentiero per il bosco e' bloccato da un tronco caduto."
-        (path-blocked village forest fallen-log)
+        ;; Initial problem states reflecting the quest description:
+        ;; The village and land are suffering from drought.
+        (drought-present)
+        ;; The Magic Fountain in the forest is dried up.
+        (fountain-dried magic-fountain-location)
+        ;; The forest itself presents an oppressive silence.
+        (forest-silence-oppressive forest)
 
-        ;; 2. "Un corvo ha preso la spada e l'ha portata in cima a un albero."
-        (sword-on-tree royal-sword oak-tree)
-        (at oak-tree forest) ; The tree is located within the forest area.
-
-        ;; 3. "Il tempo peggiora e inizia a piovere, rendendo il terreno scivoloso."
-        (ground-slippery forest)
-
-        ;; Other initial path conditions:
-        ;; Path from forest to castle is physically clear of logs.
-        (path-cleared forest castle)
-        (path-cleared castle forest) ; Allow return if needed
-        ;; Self-loops are generally clear
-        (path-cleared village village)
-        (path-cleared forest forest)
-        (path-cleared castle castle)
-        ;; Assume path between village and castle is clear for direct movement if no forest involved
-        (path-cleared village castle)
-        (path-cleared castle village)
+        ;; Elia has not yet officially embarked on the quest at the very start of planning.
+        ;; The 'embark-quest' action will set (quest-active elia).
     )
 
-    ;; Goal consistent with the quest: "Recuperare la spada nel bosco e riportarla al castello."
     (:goal (and
-        (king-has-sword king1 royal-sword)
+        ;; Primary goal: The Magic Fountain is awakened.
+        (fountain-awakened magic-fountain-location)
+        ;; Secondary goal: The drought has ended, as a consequence of the fountain's awakening.
+        (not (drought-present))
     ))
 )

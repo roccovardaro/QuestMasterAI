@@ -1,19 +1,19 @@
 {
-    "quest_description": "Nel regno di Eldoria, la spada del re è caduta nel bosco durante una battuta di caccia. Senza di essa, il re non può tenere la cerimonia di primavera. Un giovane abitante del villaggio viene incaricato di recuperarla.",
-    "initial_state": "Il protagonista si trova nel villaggio e riceve la missione dal re.",
-    "goal": "Recuperare la spada nel bosco e riportarla al castello.",
+    "quest_description": "Una siccit\u00e0 ha colpito il villaggio, prosciugando la Fonte Magica. Elia, una ragazza contadina, decide di avventurarsi nella foresta per risvegliarla, armata solo della sua lanterna e della sua voce narrante.",
+    "initial_state": "Elia si trova nel suo villaggio, afflitto da una grave siccit\u00e0 causata dal prosciugamento della Fonte Magica, e decide di partire per la foresta.",
+    "goal": "Risvegliare la Fonte Magica nel cuore della foresta per porre fine alla siccit\u00e0 nel villaggio.",
     "obstacles": [
-        "Il sentiero per il bosco è bloccato da un tronco caduto.",
-        "Un corvo ha preso la spada e l'ha portata in cima a un albero.",
-        "Il tempo peggiora e inizia a piovere, rendendo il terreno scivoloso."
+        "La siccit\u00e0 che affligge il villaggio e la terra",
+        "La foresta profonda e il suo silenzio opprimente",
+        "La Fonte Magica prosciugata e le sue acque immobili"
     ],
     "branching_factor": {
-        "min": 2,
-        "max": 3
+        "min": 1,
+        "max": 1
     },
     "depth_constraints": {
         "min": 3,
         "max": 5
     },
-    "context": "Storia ambientata in un piccolo regno fantasy. È una missione semplice, adatta a bambini o principianti, con un tono leggero e avventuroso."
+    "context": "La storia si svolge in un semplice villaggio rurale, circondato da una foresta incantata. Il contesto \u00e8 quello di una fiaba, con elementi di magia naturale, simbolismo animale e il potere trasformativo delle storie. Il tono \u00e8 speranzoso e incentrato sulla forza interiore e sull'innocenza."
 }

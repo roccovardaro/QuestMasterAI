@@ -31,8 +31,9 @@ def get_lore_example():
         raise FileNotFoundError(f"file Lore Example non trovato in {LORE_EXAMPLE_PATH}")
 
 #TODO
-def save_lore(lore):
-    pass
+def save_lore(lore:str):
+    LORE_PATH.write_text(lore)
+    logging.info(f"Lore salvato in {LORE_PATH}")
 
 def get_domain():
     if DOMAIN_PATH.exists():

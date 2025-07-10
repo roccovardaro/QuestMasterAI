@@ -4,12 +4,12 @@
     "goal": "",
     "obstacles": [],
     "branching_factor": {
-        "min": 0,
-        "max": 0
+        "min": 2,
+        "max": 3
     },
     "depth_constraints": {
-        "min": 0,
-        "max": 0
+        "min": 2,
+        "max": 3
     },
     "context": ""
 }
