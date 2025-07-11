@@ -1,35 +1,37 @@
-(define (problem elia-magic-fountain-quest)
+(define (problem elia-quest)
     (:domain elia-quest-for-magic-fountain)
     (:objects
-        elia - person
-        village - location
-        forest - location
-        magic-fountain-location - location
-        lantern - item
+        elia - protagonist
+        village - village
+        forest-edge - forest_edge
+        forest-depths - forest_depths
+        magic-fountain - magic_source
+        story-of-hope - story
     )
 
     (:init
-        ;; Initial state: Elia is in her village.
+        ;; Initial state as per quest description: "Elia si trova nel suo villaggio..."
         (at elia village)
-        ;; Elia possesses her lantern, as per the lore ("armata solo della sua lanterna").
-        (has elia lantern)
-
-        ;; Initial problem states reflecting the quest description:
-        ;; The village and land are suffering from drought.
-        (drought-present)
-        ;; The Magic Fountain in the forest is dried up.
-        (fountain-dried magic-fountain-location)
-        ;; The forest itself presents an oppressive silence.
-        (forest-silence-oppressive forest)
-
-        ;; Elia has not yet officially embarked on the quest at the very start of planning.
-        ;; The 'embark-quest' action will set (quest-active elia).
+        ;; "...afflitto dalla siccità..."
+        (village-afflicted-by-drought village)
+        ;; "...e decide di intraprendere il viaggio per trovare e riattivare la Fonte Magica."
+        ;; The fountain is initially inactive.
+        (fountain-inactive magic-fountain)
+        ;; Elia has the necessary story to awaken the fountain.
+        (has-story-of-hope elia story-of-hope)
+        ;; The quest is not yet active; Elia must decide to start it.
+        (not (quest-active elia))
+        ;; The fountain has not yet been found.
+        (not (magic-fountain-found magic-fountain))
+        ;; Rain has not returned to the village.
+        (not (rain-returned village))
     )
 
+    ;; Goal consistent with the quest: "Trovare la Fonte Magica nel cuore della foresta,
+    ;; risvegliarla con una storia di speranza e far tornare la pioggia al villaggio."
     (:goal (and
-        ;; Primary goal: The Magic Fountain is awakened.
-        (fountain-awakened magic-fountain-location)
-        ;; Secondary goal: The drought has ended, as a consequence of the fountain's awakening.
-        (not (drought-present))
+        (magic-fountain-found magic-fountain) ; Elia finds the Magic Fountain.
+        (fountain-active magic-fountain)      ; The Magic Fountain is awakened/reactivated.
+        (rain-returned village)               ; Rain has returned to the village.
     ))
 )

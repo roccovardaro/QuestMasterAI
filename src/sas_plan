@@ -1,0 +1,6 @@
+(decide-to-start-quest elia village)
+(go-to-forest-edge elia village forest-edge)
+(explore-forest-depths elia forest-edge forest-depths magic-fountain)
+(tell-story-and-awaken-fountain elia magic-fountain story-of-hope forest-depths)
+(magically-restore-rain-to-village village magic-fountain)
+; cost = 5 (unit cost)

@@ -1,6 +1,7 @@
 import json
 import logging
-from src.utils.constant import get_lore, get_problem_valid_example, get_domain_valid_example, get_lore_example
+from src.utils.constant import get_lore, get_problem_valid_example, get_domain_valid_example, get_lore_example, \
+    get_domain, get_problem
 from src.utils.utils import api_generate_GEMINI, extract_and_save_pddl, extract_and_save_lore
 
 # Codice ANSI per il verde
@@ -58,29 +59,58 @@ def generate_prompt(lore):
         {get_problem_valid_example()}
           """
 
-def generate_prompt_with_error(error:str):
-    pass
+def generate_prompt_with_error(lore, error:str):
+    return f"""
+              You are a PDDL modeler. Given the following quest description, generate:
+              1. A DOMAIN.PDDL file with predicates and actions, each with comments.
+              2. A PROBLEM.PDDL file with an initial state and goal consistent with the domain.
 
-def generate_pddl():
+              Lore:
+              {json.dumps(lore, indent=2)}
+
+              Return yor response like plain text in ASCII character inside 
+              <DOMAIN_PDDL> 
+
+              </DOMAIN_PDDL> 
+              blocks for the domain, 
+              and 
+              <PROBLEM_PDDL>  
+
+              </PROBLEM_PDDL> for the problem.
+              In your response pay attention to the pddl syntax. Each pddl block is encapsulated in ( and ). Example (define (guard-awake ?location) A guard is awake at the specified location
+              The PDDL files generated previously contain an error during validation. Please check and correct the syntax and semantics of the file, ensuring it complies with the PDDL standard.
+              Given the following PDDL files:
+              Domain 
+              {get_domain()}
+              Problem
+              {get_problem()}
+              "The PDDL files generated previously contain an error during validation.
+              Error:
+              {error}
+               Please check and correct the syntax and semantics of the file, ensuring it complies with the PDDL standard.
+              )"""
+
+
+def generate_pddl(error=False, error_str=""):
 
     lore=get_lore()
     logging.info("Generating PDDL...")
-    prompt=generate_prompt(lore)
+    if(not error):
+        prompt=generate_prompt(lore)
+    else:
+        prompt=generate_prompt_with_error(lore,error_str)
 
     response=api_generate_GEMINI(prompt)
 
-    logging.info("GEMINILLM processo completato.")
+    logging.info("Generazione PDDL completata.")
 
     return response
+
+
 
 story="""Elia era una ragazza semplice, figlia di contadini, che amava raccontare storie agli animali del bosco.
        Quando una siccità colpì il villaggio, si disse che la Fonte Magica nel cuore della foresta si era spenta. Nessuno osava cercarla, ma Elia partì con una lanterna e la sua voce.
        Nel silenzio del bosco, seguì un cervo dorato fino alla sorgente. L’acqua era ferma. Elia raccontò una storia di speranza, proprio come faceva sotto il salice.
        La Fonte si risvegliò. Tornò la pioggia. Nessuno seppe davvero cosa accadde, ma da quel giorno, al villaggio si ascoltavano le storie di Elia con occhi nuovi."""
 
-
-#extract_and_save_lore(generate_lore(story))
-
-response = generate_pddl()
-extract_and_save_pddl(response)
 

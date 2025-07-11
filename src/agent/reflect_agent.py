@@ -1,7 +1,9 @@
 import logging
 import subprocess
+
+from src.agent.pddl_generator_agent import generate_pddl
 from src.utils.constant import DOWNWARD_PATH, DOMAIN_PATH, PROBLEM_PATH
-from src.utils.utils import to_wsl_path
+from src.utils.utils import to_wsl_path, extract_and_save_pddl
 
 # Codice ANSI per il verde
 GREEN = "\033[92m"
@@ -58,16 +60,17 @@ def validate_plan(domain_path, problem_path, system="Windows"):
     return  bool_result, err_str
 
 
-
-
 def validate_plan_main(k=3):
     i=0
     while(i<k):
         valid, err_str = validate_plan(DOMAIN_PATH,PROBLEM_PATH)
         if(valid):
+            logging.info("PDDL Validato!")
             return True
-
         #PROMPT CON ERRORE
+        logging.info(f"""PDDL generato contiene errore: {err_str}""")
+        response= generate_pddl(True,err_str)
+        extract_and_save_pddl(response)
         #GENERA E SALVA PDDL
         i+=1
     return False
