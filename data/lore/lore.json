@@ -1,20 +1,19 @@
 {
-    "quest_description": "Nel villaggio, una siccit\\u00c3\\u00a0 colp\\u00c3\\u00ac il paese e la Fonte Magica nella foresta si spense. Nessuno osava cercarla, ma Elia, una ragazza semplice che amava le storie, decise di partire per risvegliarla.",
-    "initial_state": "Elia si trova nel suo villaggio, afflitto dalla siccit\\u00c3\\u00a0, e decide di intraprendere il viaggio per trovare e riattivare la Fonte Magica.",
-    "goal": "Trovare la Fonte Magica nel cuore della foresta, risvegliarla con una storia di speranza e far tornare la pioggia al villaggio.",
+    "quest_description": "Il valoroso cavaliere deve intraprendere una missione per salvare una principessa in pericolo.",
+    "initial_state": "Il cavaliere \u00e8 pronto per la sua missione, probabilmente nel suo regno o in viaggio.",
+    "goal": "Salvare la principessa.",
     "obstacles": [
-        "La siccit\\u00c3\\u00a0 che ha prosciugato la Fonte Magica e colpito il villaggio.",
-        "Il timore e la reticenza degli altri abitanti del villaggio a cercare la fonte nel cuore della foresta.",
-        "Il silenzio e l'oscurit\\u00c3\\u00a0 della foresta da attraversare.",
-        "La Fonte Magica \\u00c3\\u00a8 inattiva e la sua acqua \\u00c3\\u00a8 ferma."
+        "Un drago malvagio custodisce il castello dove \u00e8 tenuta prigioniera la principessa.",
+        "Il sentiero per il castello \u00e8 irto di pericoli e creature oscure.",
+        "Il cavaliere deve affrontare un'antica magia o un potente stregone."
     ],
     "branching_factor": {
-        "min": 1,
-        "max": 2
+        "min": 2,
+        "max": 3
     },
     "depth_constraints": {
         "min": 3,
-        "max": 4
+        "max": 5
     },
-    "context": "Storia ambientata in un piccolo villaggio rurale e in una foresta incantata. Il tono \\u00c3\\u00a8 fiabesco, inspiratore e pieno di speranza, enfatizzando il potere delle storie e della semplicit\\u00c3\\u00a0. Adatta a un pubblico giovane."
+    "context": "Storia fantasy classica incentrata sul coraggio e l'eroismo. Adatta a un pubblico che ama le fiabe e le avventure tradizionali."
 }

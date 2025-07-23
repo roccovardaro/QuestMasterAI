@@ -41,4 +41,3 @@ def do_phase_1(story:str):
     logging.info("Fine phase 1")
     return isValid
 
-do_phase_1(story)

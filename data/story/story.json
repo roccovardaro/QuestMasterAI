@@ -1,37 +1,86 @@
 {
-  "start_village": {
-    "text": "Nel villaggio oppresso dalla siccità, dove la Fonte Magica è spenta e la speranza vacilla, la giovane Elia, custode di innumerevoli storie, sente una chiamata. Il suo cuore semplice e coraggioso è pronto a sfidare il timore che lega gli altri. Decide di agire.",
+  "start_kingdom": {
+    "text": "Nel profondo del tuo nobile regno, la richiesta d'aiuto per la principessa, imprigionata in un lontano castello, giunge alle tue orecchie. Sei pronto a partire, ma come ti prepari per l'impresa?",
     "actions": {
-      "Partire per trovare la Fonte Magica": "forest_edge_1"
+      "Prendi la tua fidata spada, pronta per la battaglia": "get_sword_kingdom",
+      "Ascolta le voci sulla mistica Antica Reliquia, un'alternativa al confronto diretto": "explore_relic_rumors"
     }
   },
-  "forest_edge_1": {
-    "text": "Elia lascia le case silenziose, avventurandosi ai margini della foresta. L'aria si fa più fresca, l'ombra degli alberi più densa. Il sentiero, appena visibile, si perde tra foglie e radici, sussurrando antichi segreti.",
+  "get_sword_kingdom": {
+    "text": "Impugni la tua spada, sentendo il suo peso familiare e il potenziale che promette. Ogni nemico che oserà sbarrarti il passo dovrà affrontare la tua lama. La strada per la Foresta Incantata è il tuo primo ostacolo.",
     "actions": {
-      "Seguire il sentiero nel profondo del bosco": "forest_depths_1",
-      "Cercare un sentiero alternativo lungo il fiume secco": "forest_edge_2"
+      "Affronta i pericoli della Foresta Incantata": "forest_peril"
     }
   },
-  "forest_edge_2": {
-    "text": "Il fiume è prosciugato, e il percorso si rivela un vicolo cieco. Il silenzio della foresta sembra farsi più cupo, ma Elia non si arrende. Sente che la vera via è quella maestra, tracciata solo per lei.",
+  "explore_relic_rumors": {
+    "text": "Le leggende narrano di un'Antica Reliquia, capace di disperdere le magie più oscure, nascosta nelle Rovine Dimenticate. Trovarla potrebbe darti un vantaggio cruciale.",
     "actions": {
-      "Tornare sul sentiero principale e addentrarsi": "forest_depths_1"
+      "Viaggia verso le Rovine Dimenticate": "ancient_ruins"
     }
   },
-  "forest_depths_1": {
-    "text": "Dopo un lungo cammino nel cuore pulsante della foresta, dove la luce filtra a stento e ogni suono è amplificato, Elia la vede: la Fonte Magica. È immobile, spenta, un semplice stagno scuro e silenzioso. Ma Elia sa che la sua vera essenza è solo addormentata, in attesa di un soffio di speranza.",
+  "ancient_ruins": {
+    "text": "Le Rovine Dimenticate sono un labirinto di pietre crollate e antiche energie. Dopo una lunga ricerca, tra i detriti di un tempio dimenticato, brilla l'Antica Reliquia.",
     "actions": {
-      "Raccontare alla Fonte una storia di speranza": "fountain_awakening_1"
+      "Acquisisci l'Antica Reliquia": "has_relic_ready"
     }
   },
-  "fountain_awakening_1": {
-    "text": "Elia chiude gli occhi e intona una storia, le parole intessono fili d'oro nell'aria. È una storia di resilienza, di luce che vince l'ombra, di un piccolo seme che germoglia. La Fonte risponde: l'acqua inizia a brillare con mille colori, poi a fluire con una melodia cristallina, traboccando di vita e magia!",
+  "has_relic_ready": {
+    "text": "La Reliquia è tua. La sua aura ti infonde una strana sicurezza. Ora, devi tornare al regno per la tua spada, essenziale per gli scontri fisici che ti aspettano.",
     "actions": {
-      "Osservare la magia dispiegarsi": "victory_1"
+      "Torna al regno e prendi la tua spada": "get_sword_from_ruins"
     }
   },
-  "victory_1": {
-    "text": "Come un abbraccio del cielo, una pioggia dolce e gentile inizia a cadere sul villaggio, lavando via la siccità e riempiendo i cuori di gioia. Elia ha compiuto la sua missione, dimostrando che anche la più semplice delle voci può risvegliare la magia più grande. La speranza è tornata, e il mondo è di nuovo vibrante.",
+  "get_sword_from_ruins": {
+    "text": "Finalmente, equipaggiato sia con la lama che con la mistica Reliquia, sei pronto per la vera avventura. Il sentiero per la Foresta Incantata ti aspetta, irto di pericoli.",
+    "actions": {
+      "Affronta i pericoli della Foresta Incantata": "forest_peril"
+    }
+  },
+  "forest_peril": {
+    "text": "Il sentiero per la Foresta Incantata è avvolto in un'oscurità minacciosa, abitata da creature e trappole. Solo con la tua lama puoi aprirti un varco attraverso l'ignoto.",
+    "actions": {
+      "Sconfiggi le creature oscure e libera il passaggio": "cleared_forest"
+    }
+  },
+  "cleared_forest": {
+    "text": "Dopo un'ardua battaglia, il sentiero è sgombro. Attraversi la foresta con passo deciso, e presto le imponenti mura del Castello del Drago si ergono all'orizzonte, minacciose e maestose.",
+    "actions": {
+      "Prosegui verso il Cancello del Castello": "castle_gate_dragon"
+    }
+  },
+  "castle_gate_dragon": {
+    "text": "Al cancello del castello, un'ombra colossale si proietta su di te: il Drago, guardiano feroce con occhi di fuoco e scaglie dure come l'acciaio. La principessa è vicina, ma questo mostro va affrontato!",
+    "actions": {
+      "Impegnati in battaglia con il Drago": "defeated_dragon"
+    }
+  },
+  "defeated_dragon": {
+    "text": "Con un ruggito finale che scuote le fondamenta del castello, il drago crolla, sconfitto. Il cancello si spalanca, invitandoti a entrare. All'interno, un'aura di magia antica ti avvolge, presagio di un nuovo ostacolo.",
+    "actions": {
+      "Addentrati nel cuore del castello": "castle_interior_magic"
+    }
+  },
+  "castle_interior_magic": {
+    "text": "Nelle profondità del castello, una potente barriera magica sigilla la strada per la principessa. Un sinistro Stregone, il custode di questa magia, ti attende con un sorriso malvagio.",
+    "actions": {
+      "Sfidalo in un duello mortale con la tua spada": "sorcerer_defeated",
+      "Utilizza l'Antica Reliquia per disperdere la magia": "magic_dispelled_relic"
+    }
+  },
+  "sorcerer_defeated": {
+    "text": "Con un ultimo, disperato gesto, lo Stregone cade, e la barriera magica si dissolve in fumo. La strada per la principessa è finalmente libera, senza ostacoli magici a fermarti.",
+    "actions": {
+      "Raggiungi e salva la Principessa!": "victory_princess"
+    }
+  },
+  "magic_dispelled_relic": {
+    "text": "L'antica Reliquia si illumina con un bagliore accecante, rompendo l'incantesimo. La barriera svanisce, e lo Stregone, privo del suo potere, si ritira nell'ombra, lasciandoti il passaggio libero. La principessa è a portata di mano!",
+    "actions": {
+      "Raggiungi e salva la Principessa!": "victory_princess"
+    }
+  },
+  "victory_princess": {
+    "text": "Hai raggiunto la principessa! Con il drago sconfitto e l'antica magia spezzata, la liberi dalle sue catene. La tua missione è compiuta, il regno festeggia il suo eroe! Hai salvato la principessa!",
     "actions": {}
   }
 }

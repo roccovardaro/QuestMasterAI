@@ -1,6 +1,0 @@
-(embark-quest elia village)
-(go elia village forest)
-(tell-story-to-forest elia forest lantern)
-(go elia forest magic-fountain-location)
-(awaken-magic-fountain elia magic-fountain-location forest)
-; cost = 5 (unit cost)

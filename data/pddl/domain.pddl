@@ -1,105 +1,158 @@
-(define (domain elia-quest-for-magic-fountain)
+(define (domain knight-quest)
     (:requirements :strips :typing)
     (:types
-        person
-        location
-        magic_source
-        story
-        protagonist - person
-        village forest_edge forest_depths - location
+        character ; Generic type for any character in the story
+            knight princess enemy - character ; Specific types of characters
+            dragon sorcerer - enemy ; Specific types of enemies
+        location ; Places in the world
+            kingdom forest_path castle_gate castle_interior ancient_ruins - location ; Specific locations
+        item ; Any item that can be picked up or used
+            sword ancient_relic - item ; Specific types of items
     )
 
     (:predicates
-        (at ?p - person ?l - location) ; Indicates a person's current location.
-        (quest-active ?p - protagonist) ; True when Elia has decided to start her quest.
-        (magic-fountain-found ?f - magic_source) ; True when the Magic Fountain has been located.
-        (fountain-inactive ?f - magic_source) ; True when the Magic Fountain is dry and not active.
-        (fountain-active ?f - magic_source) ; True when the Magic Fountain has been awakened and is flowing.
-        (village-afflicted-by-drought ?l - village) ; True if the village is suffering from drought.
-        (rain-returned ?l - village) ; True if rain has returned to the village.
-        (has-story-of-hope ?p - protagonist ?s - story) ; True if Elia knows a story of hope.
-        ;; Obstacles:
-        ;; "La siccità" is represented by `village-afflicted-by-drought`.
-        ;; "Il timore e la reticenza degli altri" is implicitly overcome by Elia's decision to act.
-        ;; "Il silenzio e l'oscurità della foresta" is implicitly handled by the 'explore-forest-depths' action's success.
-        ;; "La Fonte Magica è inattiva" is represented by `fountain-inactive`.
+        (at ?o - object ?l - location) ; An object (character or item) is at a specific location.
+        (quest-active ?k - knight) ; Indicates the knight is currently undertaking the quest.
+        (has ?k - knight ?i - item) ; The knight possesses a specific item.
+        (path-blocked ?from ?to - location) ; Indicates that a path between two locations is impassable due to obstacles or dangers.
+        (enemy-present ?e - enemy ?l - location) ; An enemy (e.g., dragon, sorcerer) is currently at a particular location.
+        (magic-barrier-active ?l - location) ; A magical barrier is active at a location, blocking further progress.
+        (princess-imprisoned ?l - location) ; The princess is held captive at a specified location.
+        (is-defeated ?e - enemy) ; An enemy has been vanquished.
+        (magic-barrier-dispelled ?l - location) ; The magical barrier at a location has been removed or neutralized.
+        (princess-rescued ?p - princess) ; The ultimate goal: the princess has been successfully rescued.
     )
 
-    ;; Action: Elia decides to embark on her quest.
-    ;; This action marks the beginning of her active pursuit of the Magic Fountain,
-    ;; overcoming any initial hesitation or the "timore" of others.
-    (:action decide-to-start-quest
-        :parameters (?p - protagonist ?v - village)
-        :precondition (and
-            (at ?p ?v)
-            (not (quest-active ?p)) ; Ensure quest isn't already active
-        )
-        :effect (and
-            (quest-active ?p)
-        )
+    ;; Action: The knight officially starts the quest.
+    ;; This action signifies the beginning of the adventure and activates the quest state for the knight.
+    (:action start-quest
+        :parameters (?k - knight ?start_loc - location)
+        :precondition (at ?k ?start_loc)
+        :effect (quest-active ?k)
     )
 
-    ;; Action: Elia travels from the village to the edge of the forest.
-    ;; This represents the initial journey away from the familiar.
-    (:action go-to-forest-edge
-        :parameters (?p - protagonist ?from - village ?to - forest_edge)
+    ;; Action: The knight acquires a sword.
+    ;; The sword is an essential item for fighting enemies and clearing dangerous paths.
+    (:action get-sword
+        :parameters (?k - knight ?s - sword ?l - location)
         :precondition (and
-            (at ?p ?from)
-            (quest-active ?p)
+            (at ?k ?l)
+            (at ?s ?l)
+            (quest-active ?k)
         )
         :effect (and
-            (not (at ?p ?from))
-            (at ?p ?to)
+            (has ?k ?s)
+            (not (at ?s ?l)) ; The sword is no longer at the location, it's now with the knight.
         )
     )
 
-    ;; Action: Elia explores the deeper parts of the forest to find the Magic Fountain.
-    ;; This action implicitly involves navigating through the "silence and darkness"
-    ;; of the forest, leading her directly to the location of the dormant fountain.
-    (:action explore-forest-depths
-        :parameters (?p - protagonist ?from - forest_edge ?to - forest_depths ?f - magic_source)
+    ;; Action: The knight finds and acquires an ancient relic.
+    ;; This relic can be used as an alternative to defeating a sorcerer to dispel magic.
+    (:action get-ancient-relic
+        :parameters (?k - knight ?r - ancient_relic ?l - location)
         :precondition (and
-            (at ?p ?from)
-            (quest-active ?p)
-            (not (magic-fountain-found ?f)) ; Only explore if not yet found
+            (at ?k ?l)
+            (at ?r ?l)
+            (quest-active ?k)
         )
         :effect (and
-            (not (at ?p ?from))
-            (at ?p ?to)
-            (magic-fountain-found ?f)
+            (has ?k ?r)
+            (not (at ?r ?l)) ; The relic is no longer at the location, it's now with the knight.
         )
     )
 
-    ;; Action: Elia tells a story of hope to awaken the Magic Fountain.
-    ;; This is the core magical act that revitalizes the source, fulfilling the
-    ;; quest's emphasis on the "power of stories".
-    (:action tell-story-and-awaken-fountain
-        :parameters (?p - protagonist ?f - magic_source ?s - story ?loc - forest_depths)
+    ;; Action: The knight moves from one location to another.
+    ;; Movement is only possible if the path between the two locations is not blocked by obstacles or dangers.
+    (:action go
+        :parameters (?k - knight ?from ?to - location)
         :precondition (and
-            (at ?p ?loc)
-            (magic-fountain-found ?f)
-            (fountain-inactive ?f)
-            (has-story-of-hope ?p ?s)
+            (at ?k ?from)
+            (not (path-blocked ?from ?to))
+            (quest-active ?k)
         )
         :effect (and
-            (not (fountain-inactive ?f))
-            (fountain-active ?f)
+            (not (at ?k ?from))
+            (at ?k ?to)
         )
     )
 
-    ;; Action: The magic fountain's awakening causes rain to return to the village.
-    ;; This represents the ultimate success of the quest, resolving the drought
-    ;; and bringing hope back to the village. It's a magical consequence, not
-    ;; requiring Elia to be physically present in the village.
-    (:action magically-restore-rain-to-village
-        :parameters (?v - village ?f - magic_source)
+    ;; Action: The knight overcomes dangers on a blocked path.
+    ;; This represents dealing with "creature oscure" or other perils making a path impassable.
+    ;; Requires a sword to clear the path, showing the knight's combat prowess.
+    (:action overcome-path-dangers
+        :parameters (?k - knight ?l1 ?l2 - location ?s - sword)
         :precondition (and
-            (fountain-active ?f)
-            (village-afflicted-by-drought ?v)
+            (at ?k ?l1)
+            (path-blocked ?l1 ?l2)
+            (has ?k ?s)
+            (quest-active ?k)
+        )
+        :effect (not (path-blocked ?l1 ?l2))
+    )
+
+    ;; Action: The knight defeats the fearsome dragon.
+    ;; The dragon guards the castle entrance and must be vanquished to proceed further into the castle.
+    ;; Requires a sword for the battle.
+    (:action defeat-dragon
+        :parameters (?k - knight ?d - dragon ?l - location ?s - sword)
+        :precondition (and
+            (at ?k ?l)
+            (enemy-present ?d ?l)
+            (has ?k ?s)
+            (quest-active ?k)
         )
         :effect (and
-            (not (village-afflicted-by-drought ?v))
-            (rain-returned ?v)
+            (not (enemy-present ?d ?l))
+            (is-defeated ?d)
+        )
+    )
+
+    ;; Action: The knight confronts and defeats the powerful sorcerer.
+    ;; This action not only defeats the sorcerer but also dispels any magic barrier they control, assuming they are linked.
+    ;; Requires a sword for combat.
+    (:action defeat-sorcerer
+        :parameters (?k - knight ?s - sorcerer ?l - location ?w - sword)
+        :precondition (and
+            (at ?k ?l)
+            (enemy-present ?s ?l)
+            (has ?k ?w)
+            (quest-active ?k)
+        )
+        :effect (and
+            (not (enemy-present ?s ?l))
+            (is-defeated ?s)
+            (magic-barrier-dispelled ?l) ; Assuming sorcerer controls the magic barrier at that location.
+        )
+    )
+
+    ;; Action: The knight uses an ancient relic to dispel a magic barrier.
+    ;; This provides an alternative way to overcome magical obstacles without direct combat with a sorcerer,
+    ;; offering a strategic choice for the knight.
+    (:action dispel-magic-with-relic
+        :parameters (?k - knight ?l - location ?r - ancient_relic)
+        :precondition (and
+            (at ?k ?l)
+            (magic-barrier-active ?l)
+            (has ?k ?r)
+            (quest-active ?k)
+        )
+        :effect (magic-barrier-dispelled ?l)
+    )
+
+    ;; Action: The knight rescues the princess.
+    ;; This is the final action, achievable only after all major threats (the dragon and the magic/sorcerer) are neutralized.
+    (:action rescue-princess
+        :parameters (?k - knight ?p - princess ?l - location ?d - dragon ?s - sorcerer)
+        :precondition (and
+            (at ?k ?l)
+            (princess-imprisoned ?l)
+            (is-defeated ?d) ; The dragon must be defeated to reach her.
+            (magic-barrier-dispelled ?l) ; The magic barrier (or the sorcerer controlling it) must be dealt with.
+            (quest-active ?k)
+        )
+        :effect (and
+            (princess-rescued ?p)
+            (not (princess-imprisoned ?l)) ; The princess is no longer imprisoned.
         )
     )
 )
