@@ -1,86 +1,90 @@
 {
-  "start_kingdom": {
-    "text": "Nel profondo del tuo nobile regno, la richiesta d'aiuto per la principessa, imprigionata in un lontano castello, giunge alle tue orecchie. Sei pronto a partire, ma come ti prepari per l'impresa?",
+  "start_quest": {
+    "text": "Il vento sussurra notizie di sventura: la Principessa Aurora è stata rapita e portata in un castello avvolto dalla nebbia, ben oltre i confini del tuo regno. Il richiamo dell'avventura brucia nel tuo petto, Principe.",
     "actions": {
-      "Prendi la tua fidata spada, pronta per la battaglia": "get_sword_kingdom",
-      "Ascolta le voci sulla mistica Antica Reliquia, un'alternativa al confronto diretto": "explore_relic_rumors"
+      "Parti per la missione di salvataggio": "forest_edge"
     }
   },
-  "get_sword_kingdom": {
-    "text": "Impugni la tua spada, sentendo il suo peso familiare e il potenziale che promette. Ogni nemico che oserà sbarrarti il passo dovrà affrontare la tua lama. La strada per la Foresta Incantata è il tuo primo ostacolo.",
+  "forest_edge": {
+    "text": "Lasciandoti alle spalle le mura rassicuranti del tuo regno, ti trovi ai margini della Selva Oscura, un groviglio di alberi antichi e sentieri ingannevoli. La leggenda narra che pochi ne sono tornati.",
     "actions": {
-      "Affronta i pericoli della Foresta Incantata": "forest_peril"
+      "Addentrati nella Selva Oscura": "deep_forest"
     }
   },
-  "explore_relic_rumors": {
-    "text": "Le leggende narrano di un'Antica Reliquia, capace di disperdere le magie più oscure, nascosta nelle Rovine Dimenticate. Trovarla potrebbe darti un vantaggio cruciale.",
+  "deep_forest": {
+    "text": "Ogni passo nella foresta è un labirinto. Rami scheletrici si protendono come artigli, e l'oscurità è quasi palpabile. Dopo ore di orientamento difficile, riesci a trovare un percorso attraverso il cuore del labirinto.",
     "actions": {
-      "Viaggia verso le Rovine Dimenticate": "ancient_ruins"
+      "Prosegui verso il ponte": "bridge_approach"
     }
   },
-  "ancient_ruins": {
-    "text": "Le Rovine Dimenticate sono un labirinto di pietre crollate e antiche energie. Dopo una lunga ricerca, tra i detriti di un tempio dimenticato, brilla l'Antica Reliquia.",
+  "bridge_approach": {
+    "text": "Finalmente, la foresta si dirada, rivelando un antico ponte di pietra che si estende su un abisso nebbioso. A guardia del ponte, si erge una creatura mitologica, un Gryphon dagli occhi ardenti. Non sembra intenzionata a lasciarti passare.",
     "actions": {
-      "Acquisisci l'Antica Reliquia": "has_relic_ready"
+      "Affronta il Guardiano": "guardian_battle"
     }
   },
-  "has_relic_ready": {
-    "text": "La Reliquia è tua. La sua aura ti infonde una strana sicurezza. Ora, devi tornare al regno per la tua spada, essenziale per gli scontri fisici che ti aspettano.",
+  "guardian_battle": {
+    "text": "Il Gryphon ruggisce, e l'aria si riempie del clangore del combattimento. Colpo dopo colpo, la tua spada si scontra con le sue scaglie, fino a quando, con un'ultima mossa decisiva, la creatura crolla e il ponte è libero.",
     "actions": {
-      "Torna al regno e prendi la tua spada": "get_sword_from_ruins"
+      "Attraversa il ponte": "mountain_base"
     }
   },
-  "get_sword_from_ruins": {
-    "text": "Finalmente, equipaggiato sia con la lama che con la mistica Reliquia, sei pronto per la vera avventura. Il sentiero per la Foresta Incantata ti aspetta, irto di pericoli.",
+  "mountain_base": {
+    "text": "Superato il ponte, una catena montuosa si erge maestosa e minacciosa. Le vette sono avvolte in nubi tempestose, e i sentieri sembrano svanire nel nulla. È una scalata che metterebbe alla prova anche lo scalatore più esperto.",
     "actions": {
-      "Affronta i pericoli della Foresta Incantata": "forest_peril"
+      "Inizia l'ascesa impervia": "mountain_climb"
     }
   },
-  "forest_peril": {
-    "text": "Il sentiero per la Foresta Incantata è avvolto in un'oscurità minacciosa, abitata da creature e trappole. Solo con la tua lama puoi aprirti un varco attraverso l'ignoto.",
+  "mountain_climb": {
+    "text": "Il vento gelido ti sferza, e ogni appiglio è precario. Con determinazione ferrea, superi crepacci insidiosi e pareti a strapiombo, mentre il castello della principessa si avvicina, solitario e imponente, in lontananza.",
     "actions": {
-      "Sconfiggi le creature oscure e libera il passaggio": "cleared_forest"
+      "Raggiungi la cima e la fortezza": "castle_exterior"
     }
   },
-  "cleared_forest": {
-    "text": "Dopo un'ardua battaglia, il sentiero è sgombro. Attraversi la foresta con passo deciso, e presto le imponenti mura del Castello del Drago si ergono all'orizzonte, minacciose e maestose.",
+  "castle_exterior": {
+    "text": "Dopo un'estenuante scalata, ti trovi davanti alle mura del castello, alte e minacciose. L'aria è densa di magia oscura, e ogni ombra sembra nascondere una minaccia. La principessa è vicina, ma la fortezza è un ultimo, terribile ostacolo.",
     "actions": {
-      "Prosegui verso il Cancello del Castello": "castle_gate_dragon"
+      "Trova un ingresso segreto": "castle_interior"
     }
   },
-  "castle_gate_dragon": {
-    "text": "Al cancello del castello, un'ombra colossale si proietta su di te: il Drago, guardiano feroce con occhi di fuoco e scaglie dure come l'acciaio. La principessa è vicina, ma questo mostro va affrontato!",
+  "castle_interior": {
+    "text": "All'interno, il castello è un labirinto di corridoi bui, trappole nascoste e antichi enigmi. Con intelligenza e coraggio, riesci a decifrare gli indovinelli e a disattivare le trappole che ti sbarrano il passo.",
     "actions": {
-      "Impegnati in battaglia con il Drago": "defeated_dragon"
+      "Supera le sfide del castello": "princess_chamber"
     }
   },
-  "defeated_dragon": {
-    "text": "Con un ruggito finale che scuote le fondamenta del castello, il drago crolla, sconfitto. Il cancello si spalanca, invitandoti a entrare. All'interno, un'aura di magia antica ti avvolge, presagio di un nuovo ostacolo.",
+  "princess_chamber": {
+    "text": "Finalmente, dopo aver sventato l'ultima trappola, sfondi la porta della camera in cui è tenuta prigioniera la Principessa Aurora. I suoi occhi si illuminano di speranza al tuo arrivo. La tua missione è quasi compiuta.",
     "actions": {
-      "Addentrati nel cuore del castello": "castle_interior_magic"
+      "Libera la Principessa": "return_mountain"
     }
   },
-  "castle_interior_magic": {
-    "text": "Nelle profondità del castello, una potente barriera magica sigilla la strada per la principessa. Un sinistro Stregone, il custode di questa magia, ti attende con un sorriso malvagio.",
+  "return_mountain": {
+    "text": "Con la Principessa Aurora al tuo fianco, inizi la difficile discesa dalla montagna. Il pericolo non è svanito, ma ora la speranza brilla più luminosa ad ogni passo verso casa. La discesa è lenta ma sicura.",
     "actions": {
-      "Sfidalo in un duello mortale con la tua spada": "sorcerer_defeated",
-      "Utilizza l'Antica Reliquia per disperdere la magia": "magic_dispelled_relic"
+      "Discendi la montagna con la principessa": "return_bridge"
     }
   },
-  "sorcerer_defeated": {
-    "text": "Con un ultimo, disperato gesto, lo Stregone cade, e la barriera magica si dissolve in fumo. La strada per la principessa è finalmente libera, senza ostacoli magici a fermarti.",
+  "return_bridge": {
+    "text": "Raggiungete il ponte dove il Gryphon è caduto. Il suo corpo giace immobile, monito di sfide superate. L'attraversamento è più sereno, ma la strada è ancora lunga.",
     "actions": {
-      "Raggiungi e salva la Principessa!": "victory_princess"
+      "Attraversa il ponte con la principessa": "return_forest"
     }
   },
-  "magic_dispelled_relic": {
-    "text": "L'antica Reliquia si illumina con un bagliore accecante, rompendo l'incantesimo. La barriera svanisce, e lo Stregone, privo del suo potere, si ritira nell'ombra, lasciandoti il passaggio libero. La principessa è a portata di mano!",
+  "return_forest": {
+    "text": "La Selva Oscura vi accoglie di nuovo, ma questa volta, la sua oscurità sembra meno minacciosa con la principessa al tuo fianco. Trovi i sentieri che hai già percorso, desideroso di lasciare questo luogo inquietante.",
     "actions": {
-      "Raggiungi e salva la Principessa!": "victory_princess"
+      "Percorri la foresta con la principessa": "return_kingdom_gate"
     }
   },
-  "victory_princess": {
-    "text": "Hai raggiunto la principessa! Con il drago sconfitto e l'antica magia spezzata, la liberi dalle sue catene. La tua missione è compiuta, il regno festeggia il suo eroe! Hai salvato la principessa!",
+  "return_kingdom_gate": {
+    "text": "Le luci del tuo regno appaiono all'orizzonte, un faro di salvezza. Superata l'ultima minaccia della foresta, le porte del castello si aprono per accogliervi, e le campane suonano a festa per il vostro ritorno.",
+    "actions": {
+      "Riporta la Principessa al sicuro nel regno": "grand_reunion"
+    }
+  },
+  "grand_reunion": {
+    "text": "La Principessa Aurora è finalmente al sicuro, accolta dal giubilo del popolo. Sei un eroe, Principe, e la tua leggenda di coraggio e amore sarà narrata per sempre, ricordando l'audacia che ha riportato la luce nel regno.",
     "actions": {}
   }
 }

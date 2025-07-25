@@ -1,19 +1,20 @@
 {
-    "quest_description": "Il valoroso cavaliere deve intraprendere una missione per salvare una principessa in pericolo.",
-    "initial_state": "Il cavaliere \u00e8 pronto per la sua missione, probabilmente nel suo regno o in viaggio.",
-    "goal": "Salvare la principessa.",
+    "quest_description": "Una grave siccit\u00e0 ha colpito il villaggio, prosciugando la Fonte Magica nel cuore della foresta. Nessuno osa cercarla, ma Elia, una ragazza contadina con il dono di raccontare storie, decide di partire per risvegliarla.",
+    "initial_state": "Elia si trova nel suo villaggio, afflitta dalla siccit\u00e0 e dalla disperazione degli abitanti, e decide di avventurarsi nella foresta con una lanterna e la sua voce per trovare la Fonte Magica.",
+    "goal": "Raggiungere la Fonte Magica, risvegliarla con una storia per far tornare la pioggia e ripristinare la speranza nel villaggio.",
     "obstacles": [
-        "Un drago malvagio custodisce il castello dove \u00e8 tenuta prigioniera la principessa.",
-        "Il sentiero per il castello \u00e8 irto di pericoli e creature oscure.",
-        "Il cavaliere deve affrontare un'antica magia o un potente stregone."
+        "La siccit\u00e0 ha prosciugato la Fonte Magica e minaccia il villaggio.",
+        "Il silenzio e l'oscurit\u00e0 del bosco creano un'atmosfera intimidatoria.",
+        "Nessuno osa cercare la Fonte Magica, indicando una paura o una difficolt\u00e0 preesistente nel trovarla.",
+        "L'acqua della fonte \u00e8 ferma e inerte al momento del ritrovamento, richiedendo un'azione per risvegliarla."
     ],
     "branching_factor": {
         "min": 2,
-        "max": 3
+        "max": 2
     },
     "depth_constraints": {
         "min": 3,
-        "max": 5
+        "max": 4
     },
-    "context": "Storia fantasy classica incentrata sul coraggio e l'eroismo. Adatta a un pubblico che ama le fiabe e le avventure tradizionali."
+    "context": "Storia fantasy semplice e commovente, ambientata in un piccolo villaggio rurale. \u00c8 una missione di speranza e riscoperta del potere della narrazione, adatta a un tono leggero e ispiratore."
 }

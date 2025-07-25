@@ -1,8 +1,0 @@
-(start-quest knight1 kingdom_loc)
-(get-sword knight1 sword1 kingdom_loc)
-(go knight1 kingdom_loc castle_gate_loc)
-(defeat-dragon knight1 dragon1 castle_gate_loc sword1)
-(go knight1 castle_gate_loc castle_interior_loc)
-(defeat-sorcerer knight1 sorcerer1 castle_interior_loc sword1)
-(rescue-princess knight1 princess1 castle_interior_loc dragon1 sorcerer1)
-; cost = 7 (unit cost)

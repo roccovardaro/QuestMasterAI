@@ -28,7 +28,7 @@ if st.button("Invia"):
             isValid = do_phase_1(user_input)
             if isValid:
                 st.success("Storia generata correttamente!")
-                # st.page_link("pagina_successiva")  # opzionale
+                st.page_link("play_custom_story.py")  # opzionale
             else:
                 st.error("Errore durante la generazione della risposta.")
                 st.rerun()

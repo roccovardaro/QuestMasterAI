@@ -58,3 +58,13 @@ def to_wsl_path(path: Path) -> str:
     """Converte un Path di Windows in path WSL"""
     path = path.resolve()
     return "/mnt/" + path.drive[0].lower() + path.as_posix()[2:]
+
+def extract_html(response: str) -> str:
+    try:
+        html_block = response.split("<GEN_HTML>")[1].split("</GEN_HTML>")[0].strip()
+        return html_block
+
+    except Exception:
+        logging.error("Failed to extract Lore from response.")
+        return
+

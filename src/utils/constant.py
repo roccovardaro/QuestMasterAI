@@ -19,6 +19,7 @@ DOWNWARD_PATH= Path(f"{BASE_DIR}/downward/fast-downward.py")
 SAS_PLAN_PATH= Path(f"{BASE_DIR}/src/sas_plan")
 STORY_PATH= Path(f"{BASE_DIR}/data/story/story.json")
 STORY_EXAMPLE_PATH= Path(f"{BASE_DIR}/data/story/story_example.json")
+HTML_EXAMPLE_PATH= Path(f"{BASE_DIR}/data/html/html_example.html")
 
 
 
@@ -74,16 +75,23 @@ def get_story_example():
     else:
         raise FileNotFoundError(f"file Story Example non trovato in {STORY_EXAMPLE_PATH}")
 
-def save_story(story:str):
-    STORY_PATH.write_text(story)
-    logging.info(f"Story salvato in {STORY_PATH}")
-
-
 def get_sas_plan():
     if SAS_PLAN_PATH.exists():
         return SAS_PLAN_PATH.read_text()
     else:
         FileNotFoundError(f"file SAS plan non trovato in {SAS_PLAN_PATH}")
+
+def get_html_example():
+    if HTML_EXAMPLE_PATH.exists():
+        return HTML_EXAMPLE_PATH.read_text()
+
+    else:
+        raise FileNotFoundError(f"file HTML Example non trovato in {HTML_EXAMPLE_PATH}")
+
+def save_story(story:str):
+    STORY_PATH.write_text(story)
+    logging.info(f"Story salvato in {STORY_PATH}")
+
 
 def save_problem(problem: str) -> None:
     PROBLEM_PATH.write_text(problem)

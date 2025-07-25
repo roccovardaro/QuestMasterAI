@@ -2,7 +2,8 @@
   "start": {
     "text": "Ti svegli su una spiaggia deserta. All'orizzonte vedi una capanna e una grotta.",
     "actions": {
-      "Vai verso la capanna": "hut"
+      "Vai verso la capanna": "hut",
+      "Vai verso la cava": "cave"
     }
   },
   "hut": {
