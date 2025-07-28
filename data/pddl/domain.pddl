@@ -1,76 +1,95 @@
-(define (domain elia-magic-source-quest)
+(define (domain elias-quest)
     (:requirements :strips :typing)
     (:types
-        person ; Represents characters in the story, specifically Elia.
-        location ; Represents places in the world (village, forest, magic source).
-        item ; Represents objects Elia can possess, like the lantern.
-        magic-source ; A specific type of location that is the quest's objective.
+        person ; Represents characters in the story, like Elia.
+        location ; Represents different places in the world (e.g., village, forest).
+        spring ; Represents a magical entity, specifically the Magic Spring.
     )
 
     (:predicates
         (at ?p - person ?l - location) ; Indicates that a person is at a specific location.
-        (has-item ?p - person ?i - item) ; Indicates a person possesses a specific item.
-        (can-storytell ?p - person) ; Indicates Elia's unique innate gift of storytelling.
-
-        (source-is-dry ?s - magic-source) ; Represents the initial state of the Magic Source (drought).
-        (source-is-active ?s - magic-source) ; Represents the goal state of the Magic Source (water flowing, rain returns).
-
-        (village-afflicted) ; Represents the initial despair and drought affecting the village.
-        (village-restored) ; Represents the goal state where hope and rain return to the village.
-
-        (forest-intimidating) ; Represents the combined obstacle of "silence, darkness, and nobody dares to seek."
-                              ; This predicate means the direct path or finding the source within the forest is difficult.
-        (source-found ?s - magic-source) ; Indicates that Elia has successfully navigated the forest
-                                         ; and located the specific spot of the Magic Source.
+        (drought-active ?l - location) ; True if a location is suffering from a drought (Obstacle 1).
+        (quest-initiated ?p - person) ; True if Elia has decided to begin her quest (Addresses Obstacle 2: overcoming fear/resignation).
+        (in-forest ?l - location) ; Helper predicate to mark locations that are part of the forest, aiding search.
+        (spring-located ?p - person ?s - spring) ; True if Elia has successfully found the Magic Spring within the forest (Addresses Obstacle 3: vastness of forest).
+        (spring-dormant ?s - spring) ; True if the Magic Spring is currently inactive/lifeless (Obstacle 4).
+        (has-storytelling-skill ?p - person) ; True if a person (Elia) possesses her unique ability.
+        (story-told-at-spring ?p - person ?s - spring) ; True if Elia has performed her storytelling to the spring.
+        (spring-awakened ?s - spring) ; True if the Magic Spring has been successfully revived.
+        (village-saved ?l - location) ; True if the village has been saved from the drought (Final goal predicate).
     )
 
-    ;; Action: Move between general locations.
-    ;; This action allows Elia to travel from her current location to an adjacent one.
-    ;; It implicitly handles general path traversal but not specific obstacles like "forest-intimidating".
-    (:action go
+    ;; Action: Elia decides to embark on her quest, overcoming the village's despair and her own initial hesitation.
+    (:action initiate-quest
+        :parameters (?p - person ?village - location)
+        :precondition (and
+            (at ?p ?village)
+            (drought-active ?village) ; The quest starts because of the drought.
+        )
+        :effect (and
+            (quest-initiated ?p) ; Elia is now on her quest.
+        )
+    )
+
+    ;; Action: Elia moves from one location to another.
+    (:action traverse-path
         :parameters (?p - person ?from ?to - location)
         :precondition (and
             (at ?p ?from)
-            ;; No specific path-cleared predicates needed for general movement,
-            ;; as specific obstacles are handled by other actions for finding the source.
+            (quest-initiated ?p) ; Elia must be on her quest to move towards the goal.
         )
         :effect (and
-            (not (at ?p ?from))
-            (at ?p ?to)
+            (not (at ?p ?from)) ; Elia leaves the 'from' location.
+            (at ?p ?to) ; Elia arrives at the 'to' location.
         )
     )
 
-    ;; Action: Find the Magic Source within the intimidating forest.
-    ;; This action represents Elia overcoming the "silence and darkness" (with her lantern)
-    ;; and the "nobody dares to seek" aspect (with her unique bravery and perhaps storytelling gift,
-    ;; though storytelling is only a direct precondition for awakening).
-    (:action find-magic-source
-        :parameters (?p - person ?forest-loc - location ?s - magic-source ?l - item)
+    ;; Action: Elia actively searches for the Magic Spring within the vast and silent forest.
+    ;; This addresses the "silence and vastness of the forest" making the spring hard to find (Obstacle 3).
+    (:action search-for-spring
+        :parameters (?p - person ?forest_loc - location ?magic_spring - spring)
         :precondition (and
-            (at ?p ?forest-loc) ; Elia must be in the forest.
-            (has-item ?p ?l)    ; Elia needs the lantern to navigate the darkness.
-            (forest-intimidating) ; The forest is initially an intimidating obstacle.
+            (at ?p ?forest_loc) ; Elia must be in the forest.
+            (in-forest ?forest_loc) ; The location must be identified as part of the forest.
+            (not (spring-located ?p ?magic_spring)) ; The spring must not have been found yet by Elia.
+            (quest-initiated ?p) ; Elia must be on her quest.
         )
         :effect (and
-            (source-found ?s)       ; Elia successfully locates the Magic Source.
-            (not (forest-intimidating)) ; The immediate intimidation/mystery of the forest is overcome for Elia.
+            (spring-located ?p ?magic_spring) ; Elia successfully locates the spring.
         )
     )
 
-    ;; Action: Awaken the Magic Source with a story.
-    ;; This is the climax action where Elia uses her unique gift to revive the source,
-    ;; bringing rain and hope back to the village.
-    (:action awaken-source
-        :parameters (?p - person ?s - magic-source)
+    ;; Action: Elia uses her unique storytelling skill to awaken the dormant Magic Spring.
+    ;; This demonstrates the "power of stories" and directly addresses the "inert spring" obstacle (Obstacle 4).
+    (:action tell-story-to-spring
+        :parameters (?p - person ?magic_spring - spring ?forest_loc - location)
         :precondition (and
-            (at ?p ?s)             ; Elia must be at the Magic Source.
-            (source-is-dry ?s)     ; The source must be in its dry state.
-            (can-storytell ?p)     ; Elia must use her storytelling gift.
+            (at ?p ?forest_loc) ; Elia must be in the forest where the spring is.
+            (spring-located ?p ?magic_spring) ; Elia must have found the spring.
+            (spring-dormant ?magic_spring) ; The spring must still be dormant.
+            (has-storytelling-skill ?p) ; Elia must possess her special skill.
         )
         :effect (and
-            (source-is-active ?s)  ; The Magic Source is now active and flowing.
-            (not (source-is-dry ?s)) ; It is no longer dry.
-            (village-restored)     ; The village regains hope and rain.
+            (story-told-at-spring ?p ?magic_spring) ; Records that a story was told.
+            (not (spring-dormant ?magic_spring)) ; The spring is no longer dormant.
+            (spring-awakened ?magic_spring) ; The spring is now awakened.
+        )
+    )
+
+    ;; Action: Elia returns to the village after awakening the spring, signifying the end of the drought and salvation of the village.
+    ;; This action connects the awakened spring to the final goal of saving the village.
+    (:action return-to-village-with-rain
+        :parameters (?p - person ?forest_loc ?village_loc - location ?magic_spring - spring)
+        :precondition (and
+            (at ?p ?forest_loc) ; Elia is in the forest (where the spring is).
+            (spring-awakened ?magic_spring) ; The spring must have been awakened.
+            (quest-initiated ?p) ; Elia is still on her quest to bring back rain.
+        )
+        :effect (and
+            (not (at ?p ?forest_loc)) ; Elia leaves the forest.
+            (at ?p ?village_loc) ; Elia arrives back at the village.
+            (not (drought-active ?village_loc)) ; The drought at the village ends.
+            (village-saved ?village_loc) ; The village is now saved.
         )
     )
 )

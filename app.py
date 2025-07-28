@@ -23,9 +23,14 @@ st.image(BACKGROUND_PATH)
 
 col1, col2 = st.columns(2)
 
+if "isCustom" not in st.session_state:
+    st.session_state["isCustom"] = False
+
+
 with col1:
     st.subheader("Crea La tua storia")
     st.page_link("pages/create_story.py", label="GENERATE AI STORY", icon="🏠")
+
 
 with col2:
     st.subheader("Gioca La Storia di esempio ")

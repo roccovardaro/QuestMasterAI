@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+html_part_1= """<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il Sentiero della Capanna</title>
+    <title></title>
     <style>
         body {
             font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
@@ -58,14 +58,18 @@
             margin: 0;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Un Nuovo Capitolo</h1>
-        <p class="previous-action">Azione Corrente: Vai verso la capanna.</p>
-        <div class="continuation">
-            <p>La luce tremolante di una lanterna filtrava dalla finestra. Avvicinandosi, sentì una melodia soave, un invito silenzioso. Il vecchio legno scricchiolò sotto le sue dita, rivelando un interno caldo e accogliente.</p>
+</head>"""
+
+def generate_html(title, current_story,previous_action):
+    html_part_2= f"""
+    <body>
+        <div class="container">
+            <h1>{title}</h1>
+            <p class="previous-action">Azione Corrente: {previous_action}.</p>
+            <div class="continuation">
+                <p>{current_story}</p>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+    </body>
+    </html>"""
+    return html_part_1+html_part_2

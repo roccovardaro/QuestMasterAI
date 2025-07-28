@@ -14,6 +14,7 @@ def generate_prompt_for_story():
 
     prompt = f"""You are an interactive storyteller.
         Given these PDDL files and this lore, create a JSON representation of the story as a finite state machine (FSM).
+        The first state must call start.
         
         Write json in <JSON> </JSON>
 

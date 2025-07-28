@@ -1,90 +1,118 @@
 {
-  "start_quest": {
-    "text": "Il vento sussurra notizie di sventura: la Principessa Aurora è stata rapita e portata in un castello avvolto dalla nebbia, ben oltre i confini del tuo regno. Il richiamo dell'avventura brucia nel tuo petto, Principe.",
+  "start": {
+    "text": "Il villaggio ï¿½ soffocato dalla siccitï¿½, la terra crepata e i cuori pesanti. Nessuno osa piï¿½ sperare nella Fonte Magica, ma tu, Elia, senti un richiamo inestinguibile. La comunitï¿½ attende un miracolo che nessuno ha il coraggio di cercare.",
     "actions": {
-      "Parti per la missione di salvataggio": "forest_edge"
+      "Decidi di affrontare la foresta da sola": "embark_quest",
+      "Parla con gli anziani del villaggio per un consiglio": "seek_elder_advice",
+      "Rifletti sul potere delle tue storie": "reflect_on_stories"
     }
   },
-  "forest_edge": {
-    "text": "Lasciandoti alle spalle le mura rassicuranti del tuo regno, ti trovi ai margini della Selva Oscura, un groviglio di alberi antichi e sentieri ingannevoli. La leggenda narra che pochi ne sono tornati.",
+  "seek_elder_advice": {
+    "text": "Gli anziani, piegati dalla disperazione, scuotono il capo. 'La Fonte ï¿½ perduta, Elia. La foresta ï¿½ troppo vasta e il nostro coraggio ï¿½ inaridito.' Nonostante la loro rassegnazione, la tua determinazione si rafforza.",
     "actions": {
-      "Addentrati nella Selva Oscura": "deep_forest"
+      "Parti comunque per la foresta": "embark_quest",
+      "Cerca indizi nelle vecchie leggende scritte": "read_old_legends",
+      "Torna a riflettere sui tuoi poteri di narratrice": "reflect_on_stories"
     }
   },
-  "deep_forest": {
-    "text": "Ogni passo nella foresta è un labirinto. Rami scheletrici si protendono come artigli, e l'oscurità è quasi palpabile. Dopo ore di orientamento difficile, riesci a trovare un percorso attraverso il cuore del labirinto.",
+  "reflect_on_stories": {
+    "text": "Chiusi gli occhi, ripercorri le tue storie preferite. Senti il potere delle parole, della speranza che possono infondere. Questo rafforza la tua convinzione che la narrazione sia la chiave, anche per una fonte inaridita.",
     "actions": {
-      "Prosegui verso il ponte": "bridge_approach"
+      "Con rinnovato spirito, parti per la foresta": "embark_quest",
+      "Cerca una storia speciale da portare con te": "prepare_story",
+      "Chiedi l'opinione degli anziani": "seek_elder_advice"
     }
   },
-  "bridge_approach": {
-    "text": "Finalmente, la foresta si dirada, rivelando un antico ponte di pietra che si estende su un abisso nebbioso. A guardia del ponte, si erge una creatura mitologica, un Gryphon dagli occhi ardenti. Non sembra intenzionata a lasciarti passare.",
+  "read_old_legends": {
+    "text": "Trovando un antico tomo, scopri leggende di come la Fonte reagisse all'amore e alla narrazione, non alla forza. Un dettaglio prezioso che conferma la tua unicitï¿½. Ora sei piï¿½ sicura della tua missione.",
     "actions": {
-      "Affronta il Guardiano": "guardian_battle"
+      "Prepara il tuo cuore e parti per la foresta": "embark_quest",
+      "Rivedi la tua decisione, forse ï¿½ troppo pericoloso": "start"
     }
   },
-  "guardian_battle": {
-    "text": "Il Gryphon ruggisce, e l'aria si riempie del clangore del combattimento. Colpo dopo colpo, la tua spada si scontra con le sue scaglie, fino a quando, con un'ultima mossa decisiva, la creatura crolla e il ponte è libero.",
+  "prepare_story": {
+    "text": "Scegli la storia piï¿½ toccante e piena di speranza dal tuo repertorio, immaginando giï¿½ le parole che risveglieranno la Fonte. Ti senti pronta, con un nuovo tesoro nel cuore.",
     "actions": {
-      "Attraversa il ponte": "mountain_base"
+      "Con la storia nel cuore, parti per la foresta": "embark_quest",
+      "Cerchi l'ispirazione dagli abitanti del villaggio": "seek_elder_advice"
     }
   },
-  "mountain_base": {
-    "text": "Superato il ponte, una catena montuosa si erge maestosa e minacciosa. Le vette sono avvolte in nubi tempestose, e i sentieri sembrano svanire nel nulla. È una scalata che metterebbe alla prova anche lo scalatore più esperto.",
+  "embark_quest": {
+    "text": "Con il villaggio alle spalle e la speranza nel cuore, ti addentri nella Foresta Silente. Il suo silenzio ï¿½ quasi assordante, un labirinto di alberi e ombre. Trovare la Fonte sarï¿½ la tua prima vera sfida.",
     "actions": {
-      "Inizia l'ascesa impervia": "mountain_climb"
+      "Addentrati nel fitto del bosco, fidandoti dell'istinto": "deep_forest_search",
+      "Segui un flebile ruscello quasi asciutto, sperando ti guidi": "deep_forest_search",
+      "Cerca segni di antichi sentieri, seppur dimenticati": "deep_forest_search"
     }
   },
-  "mountain_climb": {
-    "text": "Il vento gelido ti sferza, e ogni appiglio è precario. Con determinazione ferrea, superi crepacci insidiosi e pareti a strapiombo, mentre il castello della principessa si avvicina, solitario e imponente, in lontananza.",
+  "deep_forest_search": {
+    "text": "La Foresta Silente ï¿½ un labirinto di verde e ombra. Ogni direzione sembra uguale. Il fruscio delle foglie e il canto lontano degli uccelli sono i tuoi unici compagni. Devi affidarti al tuo istinto per trovare la Via.",
     "actions": {
-      "Raggiungi la cima e la fortezza": "castle_exterior"
+      "Segui l'intuizione, addentrandoti dove l'ombra ï¿½ piï¿½ fitta": "search_deep_shadows",
+      "Cerca una radura che sembri 'diversa', baciata da una luce tenue": "found_dormant_spring",
+      "Rilassati e cerca di 'sentire' la magia della foresta": "sense_magic_path"
     }
   },
-  "castle_exterior": {
-    "text": "Dopo un'estenuante scalata, ti trovi davanti alle mura del castello, alte e minacciose. L'aria è densa di magia oscura, e ogni ombra sembra nascondere una minaccia. La principessa è vicina, ma la fortezza è un ultimo, terribile ostacolo.",
+  "search_deep_shadows": {
+    "text": "Le ombre si infittiscono, l'aria si fa piï¿½ fredda. Non hai trovato la fonte direttamente, ma hai la sensazione di essere sulla strada giusta. La vastitï¿½ della foresta ï¿½ ancora una sfida.",
     "actions": {
-      "Trova un ingresso segreto": "castle_interior"
+      "Continua in questa direzione con rinnovato impegno": "found_dormant_spring",
+      "Prova a circumnavigare una vecchia quercia millenaria": "deep_forest_search"
     }
   },
-  "castle_interior": {
-    "text": "All'interno, il castello è un labirinto di corridoi bui, trappole nascoste e antichi enigmi. Con intelligenza e coraggio, riesci a decifrare gli indovinelli e a disattivare le trappole che ti sbarrano il passo.",
+  "sense_magic_path": {
+    "text": "Concentrandoti, percepisci un debole pulsare, un'antica eco. ï¿½ fioca, ma presente. Sembra provenire da nord-est, una direzione che prima non avevi considerato.",
     "actions": {
-      "Supera le sfide del castello": "princess_chamber"
+      "Segui il pulsare della magia": "found_dormant_spring",
+      "Riprova a concentrarti, cercando piï¿½ chiarezza": "deep_forest_search"
     }
   },
-  "princess_chamber": {
-    "text": "Finalmente, dopo aver sventato l'ultima trappola, sfondi la porta della camera in cui è tenuta prigioniera la Principessa Aurora. I suoi occhi si illuminano di speranza al tuo arrivo. La tua missione è quasi compiuta.",
+  "found_dormant_spring": {
+    "text": "In una radura nascosta, ecco la Fonte Magica. Un bacino di pietra antico, imponente, ma inerte, l'acqua evaporata da tempo. Un senso di delusione ti assale, ma non ti arrendi. ï¿½ qui che le tue storie devono risuonare.",
     "actions": {
-      "Libera la Principessa": "return_mountain"
+      "Inizia a raccontare la storia di coraggio e speranza": "spring_reawakened",
+      "Cerca segni di come potrebbe essere stata attivata in passato": "examine_spring_history",
+      "Prova a infondere la tua energia nella fonte": "try_infuse_energy"
     }
   },
-  "return_mountain": {
-    "text": "Con la Principessa Aurora al tuo fianco, inizi la difficile discesa dalla montagna. Il pericolo non è svanito, ma ora la speranza brilla più luminosa ad ogni passo verso casa. La discesa è lenta ma sicura.",
+  "examine_spring_history": {
+    "text": "Accarezzando la pietra del bacino, percepisci un antico eco. Non ï¿½ la forza a risvegliarla, ma la risonanza con l'anima. Ti rendi conto che solo una storia, intrisa di veritï¿½ e speranza, puï¿½ fare ciï¿½.",
     "actions": {
-      "Discendi la montagna con la principessa": "return_bridge"
+      "Racconta la storia piï¿½ commovente che conosci": "spring_reawakened",
+      "Cerca altri indizi nei dintorni della fonte": "found_dormant_spring"
     }
   },
-  "return_bridge": {
-    "text": "Raggiungete il ponte dove il Gryphon è caduto. Il suo corpo giace immobile, monito di sfide superate. L'attraversamento è più sereno, ma la strada è ancora lunga.",
+  "try_infuse_energy": {
+    "text": "Provi a convogliare la tua energia, ma la fonte non reagisce. ï¿½ un'energia diversa quella che cerca. Un'antica voce sembra sussurrarti: 'Le parole, Elia, sono la chiave, non la forza bruta.'",
     "actions": {
-      "Attraversa il ponte con la principessa": "return_forest"
+      "Accetta il suggerimento e inizia a narrare": "spring_reawakened",
+      "Prova a infondere piï¿½ energia, forse non ï¿½ abbastanza": "found_dormant_spring"
     }
   },
-  "return_forest": {
-    "text": "La Selva Oscura vi accoglie di nuovo, ma questa volta, la sua oscurità sembra meno minacciosa con la principessa al tuo fianco. Trovi i sentieri che hai già percorso, desideroso di lasciare questo luogo inquietante.",
+  "spring_reawakened": {
+    "text": "Mentre le tue parole fluiscono, un debole luccichio appare nel bacino. Poi, con un mormorio crescente, l'acqua pura inizia a zampillare, riempiendo la Fonte. La foresta stessa sembra respirare di nuovo. Il tuo cuore ï¿½ colmo di gioia.",
     "actions": {
-      "Percorri la foresta con la principessa": "return_kingdom_gate"
+      "Torna immediatamente al villaggio": "village_restored",
+      "Resta un momento ad ammirare il miracolo": "admire_spring",
+      "Bevi un sorso dell'acqua appena risvegliata": "drink_spring_water"
     }
   },
-  "return_kingdom_gate": {
-    "text": "Le luci del tuo regno appaiono all'orizzonte, un faro di salvezza. Superata l'ultima minaccia della foresta, le porte del castello si aprono per accogliervi, e le campane suonano a festa per il vostro ritorno.",
+  "admire_spring": {
+    "text": "Il tempo sembra fermarsi mentre ammiri la Fonte che pulsa di vita. La sua melodia riempie l'aria, un inno alla speranza. Ma il villaggio ti attende con impazienza.",
     "actions": {
-      "Riporta la Principessa al sicuro nel regno": "grand_reunion"
+      "Torna al villaggio con la buona notizia": "village_restored",
+      "Resta ancora un po' ad assaporare il momento": "spring_reawakened"
     }
   },
-  "grand_reunion": {
-    "text": "La Principessa Aurora è finalmente al sicuro, accolta dal giubilo del popolo. Sei un eroe, Principe, e la tua leggenda di coraggio e amore sarà narrata per sempre, ricordando l'audacia che ha riportato la luce nel regno.",
+  "drink_spring_water": {
+    "text": "L'acqua ï¿½ fresca, pura, e riempie il tuo spirito di una nuova forza e chiarezza. Senti la connessione tra te, la foresta e la Fonte piï¿½ forte che mai. La tua missione ï¿½ quasi compiuta.",
+    "actions": {
+      "Rientra al villaggio, sapendo di aver compiuto il tuo destino": "village_restored",
+      "Offri un po' d'acqua a una creatura della foresta": "spring_reawakened"
+    }
+  },
+  "village_restored": {
+    "text": "Al tuo ritorno, il villaggio ï¿½ irriconoscibile. La terra ï¿½ umida, l'aria profuma di pioggia. I volti degli abitanti, prima segnati dalla disperazione, ora risplendono di gioia e gratitudine. Hai risvegliato la Fonte e salvato il tuo popolo, dimostrando il vero potere delle storie.",
     "actions": {}
   }
 }

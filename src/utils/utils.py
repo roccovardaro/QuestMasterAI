@@ -59,12 +59,12 @@ def to_wsl_path(path: Path) -> str:
     path = path.resolve()
     return "/mnt/" + path.drive[0].lower() + path.as_posix()[2:]
 
-def extract_html(response: str) -> str:
+def extract_html_title_and_story(response: str):
     try:
-        html_block = response.split("<GEN_HTML>")[1].split("</GEN_HTML>")[0].strip()
-        return html_block
-
+        title_block = response.split("<TITLE>")[1].split("</TITLE>")[0].strip()
+        story_block = response.split("<STORY>")[1].split("</STORY>")[0].strip()
+        return title_block, story_block
     except Exception:
-        logging.error("Failed to extract Lore from response.")
+        logging.error("Failed to extract Story or Title from response.")
         return
 
