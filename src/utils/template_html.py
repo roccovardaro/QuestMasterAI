@@ -65,7 +65,7 @@ def generate_html(title, current_story,previous_action):
     <body>
         <div class="container">
             <h1>{title}</h1>
-            <p class="previous-action">Azione Corrente: {previous_action}.</p>
+            <p class="previous-action">Current Action: {previous_action}.</p>
             <div class="continuation">
                 <p>{current_story}</p>
             </div>

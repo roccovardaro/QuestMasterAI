@@ -1,12 +1,12 @@
 {
-    "quest_description": "Una siccit\u00e0 colp\u00ec il villaggio, e la Fonte Magica nel cuore della foresta si era spenta. Nessuno osava cercarla, ma Elia, una ragazza semplice che amava raccontare storie, part\u00ec da sola per risvegliarla.",
-    "initial_state": "Elia si trova nel suo villaggio, afflitto da una grave siccit\u00e0. La comunit\u00e0 \u00e8 scoraggiata dalla scomparsa della Fonte Magica, e Elia decide di intraprendere la ricerca.",
-    "goal": "Risvegliare la Fonte Magica nel cuore della foresta per far tornare la pioggia e salvare il villaggio dalla siccit\u00e0, dimostrando il potere delle storie.",
+    "quest_description": "In a whimsical forest, Ulfric the dramatically incompetent wolf attempts repeatedly to catch Lillo the lamb, who is surprisingly articulate and enjoys critiquing Ulfric's hunting techniques.",
+    "initial_state": "Ulfric, a wolf with a flair for the dramatic but lacking in hunting prowess, spots Lillo, a lamb engrossed in gourmet grass-tasting, completely unaware of the impending (and comically doomed) chase.",
+    "goal": "Ulfric's primary goal is to successfully capture and consume Lillo. Lillo's goal is to expertly evade Ulfric while simultaneously providing unsolicited, often scathing, culinary and physical fitness advice.",
     "obstacles": [
-        "La siccit\u00e0 che affligge il villaggio e mette a rischio la vita.",
-        "La paura e la rassegnazione degli abitanti, che impediscono loro di cercare la fonte.",
-        "Il silenzio e la vastit\u00e0 della foresta che rendono difficile trovare la Fonte Magica.",
-        "La Fonte Magica stessa, che si presenta inerte e senza vita, apparentemente inaridita."
+        "Lillo's unparalleled agility and his ability to distract Ulfric with verbose, food-related commentary.",
+        "Ulfric's profound clumsiness, which leads him to trip, slide, and generally fail in slapstick fashion.",
+        "The natural environment (mud puddles, thorny bushes, tangled vines) frequently becomes an accidental impediment for Ulfric.",
+        "Ulfric's susceptibility to Lillo's critiques, making him self-conscious and less focused on the hunt."
     ],
     "branching_factor": {
         "min": 2,
@@ -16,5 +16,5 @@
         "min": 3,
         "max": 5
     },
-    "context": "Storia ambientata in un piccolo villaggio fantasy con un forte legame con la natura e la magia intrinseca del mondo. Il tono \u00e8 leggero, ma profondo, esplorando temi come il coraggio, la speranza e il potere trasformativo della narrazione."
+    "context": "A lighthearted, slapstick fantasy world where animals possess human-like intelligence and conversational abilities. The narrative focuses on recurring comedic failures, highlighting the absurd dynamic between a bumbling predator and a sophisticated prey."
 }

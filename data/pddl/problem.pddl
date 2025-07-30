@@ -1,28 +1,46 @@
-(define (problem elias-quest-for-magic-spring)
-    (:domain elias-quest)
+(define (problem ulfrics-doomed-chase)
+    (:domain whimsical-forest-chase)
     (:objects
-        elia - person ; The protagonist of the quest.
-        village - location ; The starting location and the place suffering from drought.
-        forest - location ; The location where the Magic Spring is found.
-        magic-spring - spring ; The magical entity Elia needs to awaken.
+        ulfric - wolf
+        lillo - lamb
+
+        clearing thicket riverbank cave - location ; Locations in the whimsical forest.
+
+        mud-puddle thorny-bush tangled-vines - hazard ; Specific environmental hazards.
+        
+        culinary-advice fitness-advice ; Types of Lillo's critiques.
     )
 
     (:init
-        ;; Initial state as per quest description: "Elia si trova nel suo villaggio, afflitto da una grave siccità."
-        (at elia village)
-        (drought-active village) ; The village is suffering from drought (Obstacle 1).
+        ;; Initial state as per quest description:
+        ;; "Ulfric, a wolf... spots Lillo... engrossed in gourmet grass-tasting, completely unaware..."
+        (at ulfric clearing)
+        (at lillo clearing)
+        (not (is-aware lillo)) ; Lillo is initially unaware of Ulfric's intent.
+        (not (is-chasing ulfric lillo)) ; The chase has not yet begun.
+        (not (is-evading lillo))
+        (not (is-caught lillo))
 
-        ;; Setup for the forest and the spring.
-        (in-forest forest) ; Designates 'forest' as a forest area.
-        (spring-dormant magic-spring) ; The Magic Spring is initially inert and lifeless (Obstacle 4).
+        ;; Ulfric's initial state: ready but prone to failure.
+        (not (is-distracted ulfric))
+        (not (is-clumsy ulfric))
+        (not (is-immobilized ulfric))
+        (is-focused ulfric) ; Ulfric is focused at the very start, before initiating the chase.
 
-        ;; Elia's inherent ability.
-        (has-storytelling-skill elia) ; Elia possesses her unique skill, crucial for the quest.
+        ;; Setup of environmental hazards in the forest:
+        (location-has-hazard thicket thorny-bush)
+        (hazard-present thorny-bush) ; Indicates the thorny bush exists.
+
+        (location-has-hazard riverbank mud-puddle)
+        (hazard-present mud-puddle) ; Indicates the mud puddle exists.
+
+        (location-has-hazard cave tangled-vines)
+        (hazard-present tangled-vines) ; Indicates the tangled vines exist.
     )
 
-    ;; Goal consistent with the quest: "Risvegliare la Fonte Magica nel cuore della foresta per far tornare la pioggia e salvare il villaggio dalla siccità, dimostrando il potere delle storie."
+    ;; Goal: "Ulfric's primary goal is to successfully capture and consume Lillo."
     (:goal (and
-        (spring-awakened magic-spring) ; The Magic Spring must be awakened.
-        (village-saved village) ; The village must be saved from the drought.
+        (is-caught lillo)
+        (is-satisfied ulfric)
     ))
 )

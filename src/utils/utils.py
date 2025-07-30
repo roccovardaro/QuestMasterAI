@@ -1,11 +1,9 @@
 import logging
-import os
-from pathlib import Path
-from dotenv import load_dotenv
-from src.utils.constant import save_domain, save_problem, save_lore, save_story
-import google.generativeai as genai
 
-load_dotenv()
+from pathlib import Path
+from src.utils.constant import save_domain, save_problem, save_lore, save_story
+from src.utils.llm import api_generate_GEMINI, api_generate_OLLAMA
+
 def extract_and_save_pddl(response: str) -> None:
     logging.info("Extracting domain and problem PDDL blocks from response...")
 
@@ -48,11 +46,11 @@ def extract_and_save_story(response: str) -> None:
 
     logging.info("✅ story.json generated.")
 
-def api_generate_GEMINI(prompt:str):
-    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-    model = genai.GenerativeModel(os.getenv("GOOGLE_MODEL_NAME"))
-    response = model.generate_content(prompt)
-    return response.text
+def call_API_LLM(prompt:str, useGeminiAPI = True):
+    if useGeminiAPI:
+        return api_generate_GEMINI(prompt)
+    else:
+        return api_generate_OLLAMA(prompt)
 
 def to_wsl_path(path: Path) -> str:
     """Converte un Path di Windows in path WSL"""

@@ -1,118 +1,192 @@
 {
   "start": {
-    "text": "Il villaggio � soffocato dalla siccit�, la terra crepata e i cuori pesanti. Nessuno osa pi� sperare nella Fonte Magica, ma tu, Elia, senti un richiamo inestinguibile. La comunit� attende un miracolo che nessuno ha il coraggio di cercare.",
+    "text": "Ulfric, a wolf with a flair for the dramatic but lacking in hunting prowess, spots Lillo, a lamb engrossed in gourmet grass-tasting, completely unaware of the impending (and comically doomed) chase. They are both in a sun-dappled clearing.",
     "actions": {
-      "Decidi di affrontare la foresta da sola": "embark_quest",
-      "Parla con gli anziani del villaggio per un consiglio": "seek_elder_advice",
-      "Rifletti sul potere delle tue storie": "reflect_on_stories"
+      "Pounce dramatically!": "chase_begins_clearing",
+      "Practice a dramatic howl first.": "ulfric_howls"
     }
   },
-  "seek_elder_advice": {
-    "text": "Gli anziani, piegati dalla disperazione, scuotono il capo. 'La Fonte � perduta, Elia. La foresta � troppo vasta e il nostro coraggio � inaridito.' Nonostante la loro rassegnazione, la tua determinazione si rafforza.",
+  "ulfric_howls": {
+    "text": "Ulfric lets out a truly magnificent, albeit slightly off-key, howl. Lillo, startled, looks up, a piece of cilantro still dangling from her mouth. 'Oh, it's *you* again,' she sighs, 'Are you quite done with the theatrics?'",
     "actions": {
-      "Parti comunque per la foresta": "embark_quest",
-      "Cerca indizi nelle vecchie leggende scritte": "read_old_legends",
-      "Torna a riflettere sui tuoi poteri di narratrice": "reflect_on_stories"
+      "No time for chitchat! Chase Lillo!": "chase_begins_clearing",
+      "Refine the howl's dramatic effect, then chase.": "ulfric_howls_again"
     }
   },
-  "reflect_on_stories": {
-    "text": "Chiusi gli occhi, ripercorri le tue storie preferite. Senti il potere delle parole, della speranza che possono infondere. Questo rafforza la tua convinzione che la narrazione sia la chiave, anche per una fonte inaridita.",
+  "ulfric_howls_again": {
+    "text": "Ulfric attempts a more nuanced howl, but it comes out sounding like a choked sneeze. Lillo merely shakes her head. 'Points for effort, but execution needs work.'",
     "actions": {
-      "Con rinnovato spirito, parti per la foresta": "embark_quest",
-      "Cerca una storia speciale da portare con te": "prepare_story",
-      "Chiedi l'opinione degli anziani": "seek_elder_advice"
+      "Embarrassed, commence the chase immediately!": "chase_begins_clearing",
+      "Decide to try a different tactic entirely.": "ulfric_moves_to_new_location_general"
     }
   },
-  "read_old_legends": {
-    "text": "Trovando un antico tomo, scopri leggende di come la Fonte reagisse all'amore e alla narrazione, non alla forza. Un dettaglio prezioso che conferma la tua unicit�. Ora sei pi� sicura della tua missione.",
+  "chase_begins_clearing": {
+    "text": "The chase is on! Lillo bounds away with surprising grace across the open clearing, Ulfric hot on her heels, though his 'hot' is more of a 'warm, slightly panting' kind of hot. Where should Ulfric focus his next magnificent (or disastrous) move?",
     "actions": {
-      "Prepara il tuo cuore e parti per la foresta": "embark_quest",
-      "Rivedi la tua decisione, forse � troppo pericoloso": "start"
+      "Attempt a pounce in the open clearing!": "ulfric_capture_attempt_clearing",
+      "Try to herd Lillo towards the Thicket.": "ulfric_moves_to_thicket_edge"
     }
   },
-  "prepare_story": {
-    "text": "Scegli la storia pi� toccante e piena di speranza dal tuo repertorio, immaginando gi� le parole che risveglieranno la Fonte. Ti senti pronta, con un nuovo tesoro nel cuore.",
+  "ulfric_capture_attempt_clearing": {
+    "text": "Ulfric unleashes a dramatic lunge! The clearing is open, no obvious hazards... But Lillo, with a flick of her tail, effortlessly sidesteps.",
     "actions": {
-      "Con la storia nel cuore, parti per la foresta": "embark_quest",
-      "Cerchi l'ispirazione dagli abitanti del villaggio": "seek_elder_advice"
+      "Lillo critiques, evades, and darts towards the Riverbank!": "lillo_evades_critiques_to_riverbank",
+      "Ulfric's own feet trip him up!": "ulfric_trips_clumsily",
+      "Success! Ulfric corners Lillo!": "ulfric_victory"
     }
   },
-  "embark_quest": {
-    "text": "Con il villaggio alle spalle e la speranza nel cuore, ti addentri nella Foresta Silente. Il suo silenzio � quasi assordante, un labirinto di alberi e ombre. Trovare la Fonte sar� la tua prima vera sfida.",
+  "ulfric_moves_to_thicket_edge": {
+    "text": "Ulfric attempts to guide Lillo towards the dense Whispering Thicket, known for its thorny bushes. Lillo, however, seems quite comfortable with the idea.",
     "actions": {
-      "Addentrati nel fitto del bosco, fidandoti dell'istinto": "deep_forest_search",
-      "Segui un flebile ruscello quasi asciutto, sperando ti guidi": "deep_forest_search",
-      "Cerca segni di antichi sentieri, seppur dimenticati": "deep_forest_search"
+      "Charge into the Thicket after her!": "ulfric_capture_attempt_thicket",
+      "Wait patiently for Lillo to come out.": "ulfric_wait_at_thicket"
     }
   },
-  "deep_forest_search": {
-    "text": "La Foresta Silente � un labirinto di verde e ombra. Ogni direzione sembra uguale. Il fruscio delle foglie e il canto lontano degli uccelli sono i tuoi unici compagni. Devi affidarti al tuo istinto per trovare la Via.",
+  "ulfric_capture_attempt_thicket": {
+    "text": "Ulfric bursts into the Thicket! Thorny bushes scratch at his fur as he lunges for Lillo.",
     "actions": {
-      "Segui l'intuizione, addentrandoti dove l'ombra � pi� fitta": "search_deep_shadows",
-      "Cerca una radura che sembri 'diversa', baciata da una luce tenue": "found_dormant_spring",
-      "Rilassati e cerca di 'sentire' la magia della foresta": "sense_magic_path"
+      "He gets tangled in the thorns!": "ulfric_tangled_in_hazard",
+      "Lillo gives a 'performance review' and dashes for the Cave!": "lillo_evades_critiques_to_cave",
+      "Ulfric trips despite the thorns!": "ulfric_trips_clumsily"
     }
   },
-  "search_deep_shadows": {
-    "text": "Le ombre si infittiscono, l'aria si fa pi� fredda. Non hai trovato la fonte direttamente, ma hai la sensazione di essere sulla strada giusta. La vastit� della foresta � ancora una sfida.",
+  "lillo_evades_critiques_to_riverbank": {
+    "text": "Lillo scampers to the Riverbank, casually mentioning, 'Your pursuit form is truly dreadful, Ulfric. You lumber like a well-fed badger after a particularly rich truffle feast!' Ulfric's ears droop, clearly miffed.",
     "actions": {
-      "Continua in questa direzione con rinnovato impegno": "found_dormant_spring",
-      "Prova a circumnavigare una vecchia quercia millenaria": "deep_forest_search"
+      "Shake off the insults and refocus!": "ulfric_recovers",
+      "Consider a new strategy by the water's edge.": "ulfric_moves_to_riverbank_strategy"
     }
   },
-  "sense_magic_path": {
-    "text": "Concentrandoti, percepisci un debole pulsare, un'antica eco. � fioca, ma presente. Sembra provenire da nord-est, una direzione che prima non avevi considerato.",
+  "lillo_evades_critiques_to_cave": {
+    "text": "Lillo gracefully leaps into the shadowy entrance of the Cave, 'Oh, Ulfric, your theatricality far outstrips your agility. It's like watching a particularly clumsy stage performance of a particularly uninspired chase scene!' Ulfric's jaw hangs open.",
     "actions": {
-      "Segui il pulsare della magia": "found_dormant_spring",
-      "Riprova a concentrarti, cercando pi� chiarezza": "deep_forest_search"
+      "Force focus and pursue!": "ulfric_recovers",
+      "Ponder her brutal assessment.": "ulfric_muttering"
     }
   },
-  "found_dormant_spring": {
-    "text": "In una radura nascosta, ecco la Fonte Magica. Un bacino di pietra antico, imponente, ma inerte, l'acqua evaporata da tempo. Un senso di delusione ti assale, ma non ti arrendi. � qui che le tue storie devono risuonare.",
+  "ulfric_trips_clumsily": {
+    "text": "Ulfric, in a magnificent display of self-sabotage, trips over his own paws and lands with an undignified THUD. Lillo sighs, 'Honestly, Ulfric, your fall control is appalling.'",
     "actions": {
-      "Inizia a raccontare la storia di coraggio e speranza": "spring_reawakened",
-      "Cerca segni di come potrebbe essere stata attivata in passato": "examine_spring_history",
-      "Prova a infondere la tua energia nella fonte": "try_infuse_energy"
+      "Scramble to get back up!": "ulfric_recovers",
+      "Lie there dramatically for a moment.": "ulfric_wallows"
     }
   },
-  "examine_spring_history": {
-    "text": "Accarezzando la pietra del bacino, percepisci un antico eco. Non � la forza a risvegliarla, ma la risonanza con l'anima. Ti rendi conto che solo una storia, intrisa di verit� e speranza, pu� fare ci�.",
+  "ulfric_tangled_in_hazard": {
+    "text": "Thorny vines snare Ulfric's hind legs, leaving him helplessly thrashing. Lillo observes, 'Such a waste of potential. This thicket's natural defenses are clearly superior to your offensive strategy, Ulfric.'",
     "actions": {
-      "Racconta la storia pi� commovente che conosci": "spring_reawakened",
-      "Cerca altri indizi nei dintorni della fonte": "found_dormant_spring"
+      "Struggle free!": "ulfric_recovers",
+      "Contemplate a new, non-thicket-related life choice.": "ulfric_pouts"
     }
   },
-  "try_infuse_energy": {
-    "text": "Provi a convogliare la tua energia, ma la fonte non reagisce. � un'energia diversa quella che cerca. Un'antica voce sembra sussurrarti: 'Le parole, Elia, sono la chiave, non la forza bruta.'",
+  "ulfric_muttering": {
+    "text": "Ulfric grumbles, 'My sprint form? What does a lamb know about sprint form?!' He's clearly preoccupied by Lillo's cutting remarks, muttering to himself.",
     "actions": {
-      "Accetta il suggerimento e inizia a narrare": "spring_reawakened",
-      "Prova a infondere pi� energia, forse non � abbastanza": "found_dormant_spring"
+      "Force himself to refocus on the hunt.": "ulfric_recovers",
+      "Consider Lillo's critique (briefly).": "ulfric_briefly_considers"
     }
   },
-  "spring_reawakened": {
-    "text": "Mentre le tue parole fluiscono, un debole luccichio appare nel bacino. Poi, con un mormorio crescente, l'acqua pura inizia a zampillare, riempiendo la Fonte. La foresta stessa sembra respirare di nuovo. Il tuo cuore � colmo di gioia.",
+  "ulfric_briefly_considers": {
+    "text": "Ulfric frowns. Maybe his paw-placement *could* be better? No! Focus, Ulfric!",
     "actions": {
-      "Torna immediatamente al villaggio": "village_restored",
-      "Resta un momento ad ammirare il miracolo": "admire_spring",
-      "Bevi un sorso dell'acqua appena risvegliata": "drink_spring_water"
+      "Return to the chase with renewed determination.": "ulfric_recovers",
+      "Dismiss Lillo's advice completely and regain focus.": "ulfric_recovers"
     }
   },
-  "admire_spring": {
-    "text": "Il tempo sembra fermarsi mentre ammiri la Fonte che pulsa di vita. La sua melodia riempie l'aria, un inno alla speranza. Ma il villaggio ti attende con impazienza.",
+  "ulfric_wallows": {
+    "text": "Ulfric rolls over, burying his nose in the leaves. He's really leaning into the melodrama now. Lillo, observing from a safe distance, mutters, 'Honestly, the sheer self-indulgence...'",
     "actions": {
-      "Torna al villaggio con la buona notizia": "village_restored",
-      "Resta ancora un po' ad assaporare il momento": "spring_reawakened"
+      "Enough! Get up and hunt!": "ulfric_recovers",
+      "Attempt to lure Lillo closer with a pathetic whimper.": "attempt_pathetic_lure"
     }
   },
-  "drink_spring_water": {
-    "text": "L'acqua � fresca, pura, e riempie il tuo spirito di una nuova forza e chiarezza. Senti la connessione tra te, la foresta e la Fonte pi� forte che mai. La tua missione � quasi compiuta.",
+  "ulfric_pouts": {
+    "text": "Ulfric collapses dramatically into a heap. 'This isn't fair! The forest is conspiring against me!' He looks utterly pathetic.",
     "actions": {
-      "Rientra al villaggio, sapendo di aver compiuto il tuo destino": "village_restored",
-      "Offri un po' d'acqua a una creatura della foresta": "spring_reawakened"
+      "Get up and try again!": "ulfric_recovers",
+      "Wallow a bit longer in self-pity.": "ulfric_wallows"
     }
   },
-  "village_restored": {
-    "text": "Al tuo ritorno, il villaggio � irriconoscibile. La terra � umida, l'aria profuma di pioggia. I volti degli abitanti, prima segnati dalla disperazione, ora risplendono di gioia e gratitudine. Hai risvegliato la Fonte e salvato il tuo popolo, dimostrando il vero potere delle storie.",
+  "attempt_pathetic_lure": {
+    "text": "Ulfric lets out a mournful, whimpering sound, hoping to trick Lillo into complacency. Lillo approaches cautiously, then snorts. 'Oh, come now, Ulfric. That's hardly convincing. Your lamentations lack a certain *gravitas*.' She then proceeds to skip away.",
+    "actions": {
+      "Spring up and chase her!": "chase_begins_clearing",
+      "Still feeling pathetic, Ulfric trips over a pebble.": "ulfric_trips_clumsily"
+    }
+  },
+  "ulfric_recovers": {
+    "text": "With a shake of his head (or a grunt as he untangles himself), Ulfric regains his composure and focus. Lillo is still somewhere in the vicinity, probably nibbling something offensively delicious.",
+    "actions": {
+      "Spot Lillo and attempt another pounce!": "ulfric_capture_attempt_clearing",
+      "Move to a strategic new location.": "ulfric_moves_to_new_location_general",
+      "Take a moment to reassess the situation.": "reassess_chase"
+    }
+  },
+  "ulfric_moves_to_new_location_general": {
+    "text": "Ulfric decides a change of scenery might change his luck. He stealthily (for a clumsy wolf) heads towards the 'Misty Grove', hoping to find Lillo unawares.",
+    "actions": {
+      "Discover Lillo already there!": "chase_begins_clearing",
+      "No sign of Lillo, try searching the Riverbank.": "ulfric_moves_to_riverbank_strategy"
+    }
+  },
+  "reassess_chase": {
+    "text": "Ulfric surveys the clearing, plotting his next move. Lillo is nowhere immediately in sight, but her distinct, melodic bleating carries on the wind, likely from the 'Gourmet Grasslands' beyond.",
+    "actions": {
+      "Head towards the Gourmet Grasslands!": "ulfric_moves_to_new_location_general",
+      "Wait for Lillo to reappear closer.": "ulfric_wait_and_pounce"
+    }
+  },
+  "ulfric_wait_and_pounce": {
+    "text": "Ulfric, showing rare patience, hides behind a bush. After a while, Lillo emerges, dusting off her wool. 'Really, Ulfric, that's just poor strategy,' she comments. He chooses this moment to spring!",
+    "actions": {
+      "Leap for the lamb!": "ulfric_capture_attempt_clearing",
+      "Feint left, then pounce right!": "ulfric_capture_attempt_clearing"
+    }
+  },
+  "ulfric_moves_to_riverbank_strategy": {
+    "text": "Ulfric arrives at the Riverbank, scanning for Lillo. The ground here is notably muddy, and there's a suspicious-looking puddle.",
+    "actions": {
+      "Attempt to corner Lillo here!": "ulfric_capture_attempt_riverbank",
+      "Lillo is spotted, she darts into the Cave!": "lillo_evades_critiques_to_cave"
+    }
+  },
+  "ulfric_capture_attempt_riverbank": {
+    "text": "Ulfric charges across the muddy riverbank! His paws slip and slide as he closes in on Lillo.",
+    "actions": {
+      "He skids right into a mud-puddle!": "ulfric_tangled_in_hazard",
+      "Lillo evades, criticizing his 'poor choice of terrain' and moves to the Thicket.": "lillo_evades_critiques_to_thicket",
+      "Ulfric manages to stay upright, but still misses Lillo and trips!": "ulfric_trips_clumsily"
+    }
+  },
+  "lillo_evades_critiques_to_thicket": {
+    "text": "Lillo elegantly hops from stone to stone, reaching the Thicket. 'Honestly, Ulfric, your choice of chase routes is pedestrian at best. A true hunter considers the terrain's effect on their prey's agility, not just their own propensity for clumsy falls!' Ulfric fumes.",
+    "actions": {
+      "Focus up and follow!": "ulfric_recovers",
+      "Ponder her words, annoyed.": "ulfric_muttering"
+    }
+  },
+  "ulfric_wait_at_thicket": {
+    "text": "Ulfric decides to wait. After a while, Lillo emerges, stretching. 'Took you long enough,' she muses. 'I was starting to think you'd given up on professional development.'",
+    "actions": {
+      "Pounce!": "ulfric_capture_attempt_clearing",
+      "Still waiting for the perfect moment.": "ulfric_patience_rewarded"
+    }
+  },
+  "ulfric_patience_rewarded": {
+    "text": "Lillo, thinking she's safe, begins nibbling some particularly succulent clover. Ulfric, seizing this rare moment of genuine complacency, springs!",
+    "actions": {
+      "Ulfric has her!": "ulfric_victory",
+      "Lillo spins and delivers a last-minute, devastating critique!": "lillo_evades_critiques_to_clearing"
+    }
+  },
+  "lillo_evades_critiques_to_clearing": {
+    "text": "Lillo somehow manages a final, gravity-defying leap into the clearing. 'And your closing technique, Ulfric? Utterly devoid of flair! You just... pounce!' Ulfric, stunned by her audacity, is momentarily speechless.",
+    "actions": {
+      "Force himself to refocus on the hunt.": "ulfric_recovers",
+      "Mutter about her rudeness.": "ulfric_muttering"
+    }
+  },
+  "ulfric_victory": {
+    "text": "Against all odds, Ulfric lunges, and this time, his paws *connect*! Lillo lets out a surprised 'Baa!' as she's gently (for Ulfric standards) pinned. 'Well, I suppose even a broken clock is right twice a day,' she mutters, 'But do consider a more balanced approach to protein acquisition next time. Perhaps some artisanal berries?' Ulfric, too stunned by his success to respond, merely grins a wide, wolfish grin. He finally has his lamb!",
     "actions": {}
   }
 }

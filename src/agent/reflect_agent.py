@@ -53,24 +53,9 @@ def validate_plan(domain_path, problem_path, system="Windows"):
         raise ValueError(f"{system} non è un sistema valido")
 
     output = result.stdout + result.stderr
-    logging.info(f"Fast Downward output:\n{result.stdout}\n{result.stderr}")
-
     bool_result="Solution found" in output or "Plan found" in output
+
+    logging.info(f"""Solution found:{bool_result}""")
     err_str= result.stderr
+    logging.info(f"""error:{err_str}""")
     return  bool_result, err_str
-
-
-def validate_plan_main(k=3):
-    i=0
-    while(i<k):
-        valid, err_str = validate_plan(DOMAIN_PATH,PROBLEM_PATH)
-        if(valid):
-            logging.info("PDDL Validato!")
-            return True
-        #PROMPT CON ERRORE
-        logging.info(f"""PDDL generato contiene errore: {err_str}""")
-        response= generate_pddl(True,err_str)
-        extract_and_save_pddl(response)
-        #GENERA E SALVA PDDL
-        i+=1
-    return False
