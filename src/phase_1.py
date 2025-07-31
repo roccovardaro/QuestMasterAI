@@ -15,30 +15,24 @@ logging.basicConfig(
     format=GREEN + '%(levelname)s: %(message)s' + RESET
 )
 
-story="""Elia era una ragazza semplice, figlia di contadini, che amava raccontare storie agli animali del bosco.
-       Quando una siccità colpì il villaggio, si disse che la Fonte Magica nel cuore della foresta si era spenta. Nessuno osava cercarla, ma Elia partì con una lanterna e la sua voce.
-       Nel silenzio del bosco, seguì un cervo dorato fino alla sorgente. L’acqua era ferma. Elia raccontò una storia di speranza, proprio come faceva sotto il salice.
-       La Fonte si risvegliò. Tornò la pioggia. Nessuno seppe davvero cosa accadde, ma da quel giorno, al villaggio si ascoltavano le storie di Elia con occhi nuovi."""
-
-
 def do_phase_1(story:str):
 
-    logging.info("Inizio phase 1")
     #1- METODO CHE DALLA STORIA GENERA LA LORE E SALVA LA LORE
+    logging.info("Inizio phase 1")
     lore_input= generate_lore(story)
     extract_and_save_lore(lore_input)
 
-    #2 - GENERIAMO I FILE PDDL DALLA LORE E CREA I FILE DOMAIN E  PROBLEM
+    #2 - GENERIAMO I FILE PDDL DALLA LORE E CREA I FILE DOMAIN E  PROBLEM E SUCCESSIVAMENTE LI VALIDIAMO
     validation_trial=3
     i = 0
     isValid=False
     validation_error=""
     while (i < validation_trial):
-        #GENERAZIONE PDDL
+        #2.1 GENERAZIONE PDDL
         logging.info(f"""Generation Number:{i}""")
         response = generate_pddl(validation_error)
         extract_and_save_pddl(response)
-        #VALIDAZIONE
+        #2.2 VALIDAZIONE
         logging.info(f"""Validation Number: {i}""")
         valid, err_str = validate_plan(DOMAIN_PATH, PROBLEM_PATH)
         if (valid):
